@@ -121,7 +121,7 @@ const createResume = asyncHandler(async (req, res) => {
 //     .json(new ApiResponse(200, user, "All details are Updated."));
 // });
 
-// const changeAvatar = asyncHandler(async (req, res) => {
+// const changeProfile = asyncHandler(async (req, res) => {
 //   const avatarLocalPath = req.file?.path;
 
 //   if (!avatarLocalPath) {
