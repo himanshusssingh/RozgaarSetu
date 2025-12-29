@@ -5,11 +5,11 @@ const resumeSchema = new Schema(
   {
     profile: {
       type: String, //cloudinary url
-      required: false,
+      required: true,
     },
     sign: {
       type: String, //cloudinary url
-      required: false,
+      required: true,
     },
     phone: {
       type: Number,
@@ -21,11 +21,11 @@ const resumeSchema = new Schema(
     },
     linkdin: {
       type: String,
-      required: false,
+      required: true,
     },
     github: {
       type: String,
-      required: false,
+      required: true,
     },
     skills: {
       type: String,
@@ -41,11 +41,11 @@ const resumeSchema = new Schema(
     },
     strength: {
       type: String,
-      required: false,
+      required: true,
     },
     hobbies: {
       type: String,
-      required: false,
+      required: true,
     },
     owner: {
       type: Schema.Types.ObjectId,
