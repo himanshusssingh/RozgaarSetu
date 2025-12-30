@@ -5,8 +5,8 @@ body{
     min-height: 100vh;
 }
  
-/* Navbar */
-.navbar{
+/* Navbar */  
+/* .navbar{
     height: 5rem;
     background-color: white;
 }
@@ -19,11 +19,11 @@ body{
 
 .nav-link{
     color: #222222;
-}
+} */
 
 
 /* Footer */
-.f-info-links a{
+/* .f-info-links a{
     text-decoration: none;
     color: #222222;
 }
@@ -54,12 +54,12 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: space-evenly;
-}
+} */
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .navbar-collapse {
-    background-color: white ; /* Or any color */
+    background-color: white ; 
     padding: 1rem;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -72,9 +72,9 @@ body{
   }
 
   .navbar-nav .nav-link:hover {
-    background-color: #fbfdfe; /* Light hover effect */
+    background-color: #fbfdfe; 
   }
-}
+} */
 
 /* Listing */
 .container{
