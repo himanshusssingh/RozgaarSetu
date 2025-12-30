@@ -7,23 +7,11 @@ const resumeSchema = new Schema(
       type: String, //cloudinary url
       required: true,
     },
-    sign: {
-      type: String, //cloudinary url
-      required: true,
-    },
     phone: {
       type: Number,
       required: true,
     },
     address: {
-      type: String,
-      required: true,
-    },
-    linkdin: {
-      type: String,
-      required: true,
-    },
-    github: {
       type: String,
       required: true,
     },
@@ -36,6 +24,10 @@ const resumeSchema = new Schema(
       required: true,
     },
     experience: {
+      type: String,
+      required: true,
+    },
+    careerObjective: {
       type: String,
       required: true,
     },

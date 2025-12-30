@@ -12,18 +12,17 @@ import { Resume } from "../models/resume.models.js";
 import jwt from "jsonwebtoken";
 
 const createResume = asyncHandler(async (req, res) => {
-  const { phone, address, linkdin, github, skills, education, experience, strength, hobbies } = req.body;
+  const { phone, address, skills, education, experience, careerObjective, strength, hobbies } = req.body;
   const {owner} = req.user._id
 
   if (
     [
       phone,
       address,
-      linkdin,
-      github,
       skills,
       education,
       experience,
+      careerObjective,
       strength,
       hobbies,
     ].some((field) => field?.trim() === "")
@@ -66,20 +65,10 @@ const createResume = asyncHandler(async (req, res) => {
     // coverImage: coverImage?.url || "",
     phone,
     address,
-    linkdin,
-    github,
     skills,
     education,
     experience,
-    strength,
-    hobbies,
-    phone,
-    address,
-    linkdin,
-    github,
-    skills,
-    education,
-    experience,
+    careerObjective,
     strength,
     hobbies,
     owner
