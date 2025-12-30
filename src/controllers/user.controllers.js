@@ -6,6 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 //   deleteFromCloudinary,
 // } from "../utils/cloudinary.js";
 import { User } from "../models/user.models.js";
+import { Resume } from "../models/resume.models.js";
 import jwt from "jsonwebtoken";
 
 const generateAccessAndRefreshToken = async (userId) => {
@@ -30,7 +31,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const registerForm = (req, res) => {
   res.render("registerForm");
-}
+};
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, username, password } = req.body;
@@ -50,7 +51,6 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User already existed!");
   }
 
-
   const user = await User.create({
     fullname,
     username,
@@ -66,17 +66,17 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while creating user.");
   }
 
-  
-
-  return res
-    .status(201)
-    // .json(new ApiResponse(200, createdUser, "User registered successfully."))
-    .redirect("/users/login");
+  return (
+    res
+      .status(201)
+      // .json(new ApiResponse(200, createdUser, "User registered successfully."))
+      .redirect("/users/login")
+  );
 });
 
 const loginForm = (req, res) => {
   res.render("loginForm");
-}
+};
 
 const loginUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
@@ -110,11 +110,21 @@ const loginUser = asyncHandler(async (req, res) => {
     secure: true,
   };
 
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .redirect("/resume/createResume");
+  const resume = await Resume.findOne({ owner: user._id });
+
+  if (resume) {
+    return res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .redirect("/index");
+  } else {
+    return res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .redirect("/resume/createResume");
+  }
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -243,7 +253,6 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "All details are Updated."));
 });
-
 
 export {
   registerUser,
