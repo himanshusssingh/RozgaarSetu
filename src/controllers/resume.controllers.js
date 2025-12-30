@@ -81,13 +81,14 @@ console.log(phone)
 
   return res
     .status(201)
-    .redirect("/index")
+    .redirect("/index");
     // .json(new ApiResponse(200, createdResume, "Resume created successfully."));
 });
 
-const editResumeForm = (req, res) => {
-  res.render("editResume");
-}
+const editResumeForm = asyncHandler(async(req, res) => {
+  const resume = await Resume.findOne({ owner: req.user._id });
+  res.render("editResume", {resume});
+});
 
 const editResume = asyncHandler(async (req, res) => {
   const {
@@ -128,7 +129,8 @@ const editResume = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, resume, "All details are Updated."));
+    .redirect("/index")
+    // .json(new ApiResponse(200, resume, "All details are Updated."));
 });
 
 // const changeProfile = asyncHandler(async (req, res) => {

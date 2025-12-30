@@ -1,65 +1,140 @@
 <% layout("layouts/boilerplate.ejs") %>
-<body>
-    <!-- <h2>:</h2>
-    <form action="/listing/<%= listing._id %>?_method=PUT" method="post">
-        <input type="text" name="listing[title]" value="<%= listing.title %>">
-        <br><br>
-        <textarea  name="listing[description]" value="<%= listing.description %>"></textarea>
-        <br><br>
-        <input type="text" name="listing[image]" value="<%= listing.image %>">
-        <br><br>
-        <input type="number" name="listing[price]" value="<%= listing.price %>">
-        <br><br>
-        <input type="text" name="listing[location]" value="<%= listing.location %>">
-        <br><br>
-        <input type="text" name="listing[country]" value="<%= listing.location %>">
-        <br><br>
-        <button>Edit</button>
-    </form> -->
 
-    <div class="row">
-        <div class="col-8 offset-2">
-            <br>
-            <h2>Edit Your Listing:</h2>
-            <form action="/listing/<%= listing._id %>?_method=PUT" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="tittle" class="form-label">Tittle</label>
-                    <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" required>
-                    <div class="invalid-feedback">Please Enter Title!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea  name="listing[description]"  class="form-control" required><%= listing.description %></textarea>
-                    <div class="invalid-feedback">Please Enter Description!</div>
-                </div>
-                <div class="mb-3">
-                    <p>Original Image</p>
-                    <img src="<%= originalImageUrl %>" alt="img">
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Upload New Image</label>
-                    <input type="file" name="listing[image]"  class="form-control" >
-                </div>
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" name="listing[price]" value="<%= listing.price %>" class="form-control" required>
-                    <div class="invalid-feedback">Please Enter Price!</div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-md-8">
-                        <label for="location" class="form-label">Location</label>
-                        <input type="text" name="listing[location]" value="<%= listing.location %>" class="form-control" required>
-                        <div class="invalid-feedback">Please Enter Location!</div>
-                    </div>
-                    <div class="mb-3 col-md-4" >
-                        <label for="country" class="form-label">Country</label>
-                        <input type="text" name="listing[country]" value="<%= listing.location %>" class="form-control" required>
-                        <div class="invalid-feedback">Please Enter Country!</div>
-                    </div>    
-                </div>
-                <button class="btn btn-danger">Save</button>
-                <br><br>
-            </form>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card shadow">
+        <div class="card-body">
+
+          <h3 class="text-center mb-4">Edit Resume</h3>
+
+          <!-- Profile Image (NOT EDITABLE) -->
+          <div class="text-center mb-4">
+            <% if (resume.profile) { %>
+              <img
+                src="<%= resume.profile %>"
+                alt="Profile Image"
+                class="rounded-circle border"
+                width="150"
+                height="150"
+              >
+            <% } %>
+            <p class="text-muted mt-2">Profile image cannot be changed</p>
+          </div>
+
+          <form
+            action="/resume/editResume"
+            method="POST"
+            class="needs-validation"
+            novalidate
+          >
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input
+                type="number"
+                name="phone"
+                class="form-control"
+                value="<%= resume.phone %>"
+                required
+              >
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <input
+                type="text"
+                name="address"
+                class="form-control"
+                value="<%= resume.address %>"
+                required
+              >
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-3">
+              <label class="form-label">Skills</label>
+              <input
+                type="text"
+                name="skills"
+                class="form-control"
+                value="<%= resume.skills %>"
+                required
+              >
+            </div>
+
+            <!-- Education -->
+            <div class="mb-3">
+              <label class="form-label">Education</label>
+              <input
+                type="text"
+                name="education"
+                class="form-control"
+                value="<%= resume.education %>"
+                required
+              >
+            </div>
+
+            <!-- Experience -->
+            <div class="mb-3">
+              <label class="form-label">Experience</label>
+              <input
+                type="text"
+                name="experience"
+                class="form-control"
+                value="<%= resume.experience %>"
+                required
+              >
+            </div>
+
+            <!-- Career Objective -->
+            <div class="mb-3">
+              <label class="form-label">Career Objective</label>
+              <textarea
+                name="careerObjective"
+                class="form-control"
+                rows="3"
+                required
+              ><%= resume.careerObjective %></textarea>
+            </div>
+
+            <!-- Strength -->
+            <div class="mb-3">
+              <label class="form-label">Strength</label>
+              <input
+                type="text"
+                name="strength"
+                class="form-control"
+                value="<%= resume.strength %>"
+                required
+              >
+            </div>
+
+            <!-- Hobbies -->
+            <div class="mb-3">
+              <label class="form-label">Hobbies</label>
+              <input
+                type="text"
+                name="hobbies"
+                class="form-control"
+                value="<%= resume.hobbies %>"
+                required
+              >
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary">Update Resume</button>
+              <a href="/resume" class="btn btn-secondary">Cancel</a>
+            </div>
+
+          </form>
+
         </div>
+      </div>
+
     </div>
-</body>
+  </div>
+</div>

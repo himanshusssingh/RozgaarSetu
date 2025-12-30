@@ -1,5 +1,89 @@
 <% layout("layouts/boilerplate.ejs") %>
-<body>
-  <h2>Index</h2>
-</body>
 
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+  
+        <div class="card shadow-lg">
+          <div class="card-body">
+  
+            <!-- Profile Image -->
+            <div class="text-center mb-4">
+              <% if (resume.profile) { %>
+                <img 
+                  src="<%= resume.profile %>" 
+                  alt="Profile Image" 
+                  class="rounded-circle border"
+                  width="150"
+                  height="150"
+                >
+              <% } else { %>
+                <img 
+                  src="/images/default-profile.png" 
+                  class="rounded-circle border"
+                  width="150"
+                  height="150"
+                >
+              <% } %>
+            </div>
+  
+            <h3 class="text-center mb-4">Resume Details</h3>
+  
+            <ul class="list-group list-group-flush">
+  
+              <li class="list-group-item">
+                <strong>📞 Phone:</strong>
+                <span class="float-end"><%= resume.phone %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>📍 Address:</strong>
+                <span class="float-end"><%= resume.address %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>💡 Skills:</strong>
+                <span class="float-end"><%= resume.skills %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>🎓 Education:</strong>
+                <span class="float-end"><%= resume.education %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>🧑‍💼 Experience:</strong>
+                <span class="float-end"><%= resume.experience %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>🎯 Career Objective:</strong>
+                <p class="mt-2 mb-0"><%= resume.careerObjective %></p>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>💪 Strength:</strong>
+                <span class="float-end"><%= resume.strength %></span>
+              </li>
+  
+              <li class="list-group-item">
+                <strong>🎨 Hobbies:</strong>
+                <span class="float-end"><%= resume.hobbies %></span>
+              </li>
+  
+            </ul>
+  
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <a href="/resume/editResume" class="btn btn-warning">Edit Resume</a>
+              <!-- <a href="/dashboard" class="btn btn-secondary">Back</a> -->
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</body>

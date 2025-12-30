@@ -11,6 +11,6 @@ router
   .route("/home")
   .get(homepage)
 
-router.route("/index").get(indexpage)
+router.route("/index").get(verifyJWT, indexpage);
 
 export default router;

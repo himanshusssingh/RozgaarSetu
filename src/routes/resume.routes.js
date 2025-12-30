@@ -20,7 +20,7 @@ router.route("/createResume")
 );
 
 router.route("/editResume")
-.get(editResumeForm)
+.get(verifyJWT, editResumeForm)
 .post(verifyJWT, editResume);
 // router
 //   .route("/changeProfile")
