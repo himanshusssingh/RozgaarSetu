@@ -1,1 +1,1 @@
-export const dbName = "resumedb";
+export const dbName = "jobdb";

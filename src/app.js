@@ -3,6 +3,7 @@ import cors from "cors";
 // import healthcheckRouter from "./routes/healthcheck.routes.js";
 import cookieParser from "cookie-parser";
 import registerRoute from "./routes/user.routes.js";
+import resumeRoute from "./routes/resume.routes.js";
 
 const app = express();
 
