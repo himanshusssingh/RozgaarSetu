@@ -82,28 +82,47 @@ console.log(phone)
 
 
 
-// const editResume = asyncHandler(async (req, res) => {
-//   const { fullname, email } = req.body;
+const editResume = asyncHandler(async (req, res) => {
+  const {
+    phone,
+    address,
+    skills,
+    education,
+    experience,
+    careerObjective,
+    strength,
+    hobbies,
+  } = req.body;
 
-//   if (!fullname || !email) {
-//     throw new ApiError(409, "Fulname and Email is required.");
-//   }
+  if (!phone || !address || !skills || !education || !experience || !careerObjective || !strength || !hobbies) {
+    throw new ApiError(409, "Data are required.");
+  }
 
-//   const user = await User.findByIdAndUpdate(
-//     req?.user._id,
-//     {
-//       $set: {
-//         fullname,
-//         email, // Check while debugging
-//       },
-//     },
-//     { new: true },
-//   ).select("-password -refreshToken");
+  const resume = await Resume.findOneAndUpdate(
+    {owner: req?.user._id},
+    {
+      $set: {
+        phone,
+        address,
+        skills,
+        education,
+        experience,
+        careerObjective,
+        strength,
+        hobbies,
+      },
+    },
+    { new: true },
+  )
 
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, user, "All details are Updated."));
-// });
+  if(!resume) {
+    throw new ApiError(404, "Resume not found.")
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, resume, "All details are Updated."));
+});
 
 // const changeProfile = asyncHandler(async (req, res) => {
 //   const avatarLocalPath = req.file?.path;
@@ -156,5 +175,5 @@ console.log(phone)
 
 export {
   createResume,
-//   editResume,
+  editResume,
 };

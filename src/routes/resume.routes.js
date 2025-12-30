@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   createResume,
-  // editResume,
+  editResume,
   // changeProfile,
 } from "../controllers/resume.controllers.js";
 import { upload } from "../middlewares/multer.middlewares.js";
@@ -15,7 +15,7 @@ router.route("/createResume").post(
   createResume,
 );
 
-// router.route("/editResume").post(verifyJWT, editResume);
+router.route("/editResume").post(verifyJWT, editResume);
 // router
 //   .route("/changeProfile")
 //   .post(verifyJWT, upload.single("profile"), changeProfile);
