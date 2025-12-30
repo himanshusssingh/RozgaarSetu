@@ -25,5 +25,6 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/users", registerRoute);
+app.use("/api/resume", resumeRoute);
 
 export default app;

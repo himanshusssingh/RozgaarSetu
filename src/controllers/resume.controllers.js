@@ -13,7 +13,12 @@ import jwt from "jsonwebtoken";
 
 const createResume = asyncHandler(async (req, res) => {
   const { phone, address, skills, education, experience, careerObjective, strength, hobbies } = req.body;
-  const {owner} = req.user._id
+
+console.log(phone)
+
+  const owner = req.user._id
+
+  console.log(owner);
 
   if (
     [
@@ -30,39 +35,29 @@ const createResume = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required.");
   }
 
-//   const existedUser = await User.findOne({
-//     $or: [{ username }, { email }],
-//   });
+  const existedResume = await Resume.findOne({
+    $or: [{ phone }, { owner }],
+  });
 
-//   if (existedUser) {
-//     throw new ApiError(409, "User already existed!");
-//   }
+  if (existedResume) {
+    throw new ApiError(409, "Resume already existed!");
+  }
 
-  // const avatarLocalPath = req.files?.avatar[0]?.path;
+  const profileLocalPath = req.file?.path;
 
-  // let coverImageLocalPath;
-  // if (
-  //   req.files &&
-  //   Array.isArray(req.files.coverImage) &&
-  //   req.files.coverImage.length > 0
-  // ) {
-  //   coverImageLocalPath = req.files.coverImage[0].path;
-  // }
 
-  // if (!avatarLocalPath) {
-  //   throw new ApiError(400, "Avatar file is required");
-  // }
+  if (!profileLocalPath) {
+    throw new ApiError(400, "Profile file is required");
+  }
 
-  // const avatar = await uploadOnCloudinary(avatarLocalPath);
-  // const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+  const profile = await uploadOnCloudinary(profileLocalPath);
 
-  // if (!avatar) {
-  //   throw new ApiError(400, "Avatar file is required.");
-  // }
+  if (!profile) {
+    throw new ApiError(400, "Profile file is required.");
+  }
 
   const resume = await Resume.create({
-    // avatar: avatar.url,
-    // coverImage: coverImage?.url || "",
+    profile: profile.url,
     phone,
     address,
     skills,

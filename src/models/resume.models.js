@@ -5,7 +5,7 @@ const resumeSchema = new Schema(
   {
     profile: {
       type: String, //cloudinary url
-      required: true,
+      required: false,
     },
     phone: {
       type: Number,
