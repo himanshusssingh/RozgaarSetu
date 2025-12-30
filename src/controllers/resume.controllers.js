@@ -11,6 +11,10 @@ import { Resume } from "../models/resume.models.js";
 
 import jwt from "jsonwebtoken";
 
+const resumeForm = (req, res) => {
+  res.render("resumeForm");
+}
+
 const createResume = asyncHandler(async (req, res) => {
   const { phone, address, skills, education, experience, careerObjective, strength, hobbies } = req.body;
 
@@ -77,10 +81,13 @@ console.log(phone)
 
   return res
     .status(201)
-    .json(new ApiResponse(200, createdResume, "Resume created successfully."));
+    .redirect("/index")
+    // .json(new ApiResponse(200, createdResume, "Resume created successfully."));
 });
 
-
+const editResumeForm = (req, res) => {
+  res.render("editResume");
+}
 
 const editResume = asyncHandler(async (req, res) => {
   const {
@@ -176,4 +183,6 @@ const editResume = asyncHandler(async (req, res) => {
 export {
   createResume,
   editResume,
+  resumeForm,
+  editResumeForm,
 };

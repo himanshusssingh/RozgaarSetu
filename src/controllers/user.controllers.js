@@ -28,6 +28,10 @@ const generateAccessAndRefreshToken = async (userId) => {
   }
 };
 
+const registerForm = (req, res) => {
+  res.render("registerForm");
+}
+
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, username, password } = req.body;
   console.log("+++++++++++++++++++++++++++++++++");
@@ -62,10 +66,17 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while creating user.");
   }
 
+  
+
   return res
     .status(201)
-    .json(new ApiResponse(200, createdUser, "User registered successfully."));
+    // .json(new ApiResponse(200, createdUser, "User registered successfully."))
+    .redirect("/users/login");
 });
+
+const loginForm = (req, res) => {
+  res.render("loginForm");
+}
 
 const loginUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
@@ -103,13 +114,7 @@ const loginUser = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
-    .json(
-      new ApiResponse(
-        200,
-        { user: loggedUser, accessToken, refreshToken },
-        "User logged in successfully.",
-      ),
-    );
+    .redirect("/resume/createResume");
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -248,4 +253,6 @@ export {
   updatePassword,
   getCurrentUser,
   updateAccountDetails,
+  registerForm,
+  loginForm,
 };
