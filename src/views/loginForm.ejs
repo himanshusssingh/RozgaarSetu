@@ -1,9 +1,21 @@
 <% layout("layouts/boilerplate.ejs") %>
+
+
 <body>
-    <div class="row">
-        <div class="col-6 offset-3">
-            <br>
-            <h3>Login User</h3>
+<!-- Main Section -->
+<div class="container">
+
+    <!-- Left Content -->
+    <div class="left">
+        <h1>Welcome to Career Guidance Portal</h1>
+        <p>Find your path to success with expert guidance.</p>
+        <img src="/images/career.jpeg" alt="Career Guidance Image">
+    </div>
+
+    <!-- Login Box -->
+    <div class="login-box">
+        <h2>Login to Your Account</h2>
+
             <form action="/users/login" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -17,7 +29,18 @@
                 
                 <button class="btn btn-dark">Login</button>
                 <br><br>
-            </form>
+            </form>    
+
+        <!-- <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+
+        <button>Login</button> -->
+
+        <div class="links">
+            <a href="/users/register">New User? Sign Up</a><br>
+            <a href="#">Forgot Password?</a>
         </div>
     </div>
+
+</div>
 </body>

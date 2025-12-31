@@ -1,9 +1,21 @@
 <% layout("layouts/boilerplate.ejs") %>
+
+
 <body>
-  <div class="row">
-    <div class="col-6 offset-3">
-      <br />
-      <h3>Register User</h3>
+<!-- Main Section -->
+<div class="container">
+
+    <!-- Left Content -->
+    <div class="left">
+        <h1>Welcome to Career Guidance Portal</h1>
+        <p>Find your path to success with expert guidance.</p>
+        <img src="/images/career.jpeg" alt="Career Guidance Image">
+    </div>
+
+    <!-- Login Box -->
+    <div class="register-box">
+        <h2>Register User</h2>
+
       <form
         action="/users/register"
         method="post"
@@ -61,6 +73,15 @@
         <button class="btn btn-dark">Register</button>
         <br /><br />
       </form>
+        <div class="links">
+            <a href="/users/register">New User? Sign Up</a><br>
+            <a href="#">Forgot Password?</a>
+        </div>
     </div>
-  </div>
+</div>
 </body>
+
+
+
+
+
