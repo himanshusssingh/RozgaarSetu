@@ -49,6 +49,7 @@ console.log(phone)
 
   const profileLocalPath = req.file?.path;
 
+  console.log("______________");
 
   if (!profileLocalPath) {
     throw new ApiError(400, "Profile file is required");

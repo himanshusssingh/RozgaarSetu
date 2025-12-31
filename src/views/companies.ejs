@@ -2,16 +2,22 @@
 <body>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
     <% for(let company of eligible){ %> 
-        <div class="card col listing-card" >
+        <div class="card col listing-card border m-3" >
           <div class="card-body">
             <p class="card-text">
-              <b><%= company.name %></b>  <br>
-              <%= company.description %>  <br>
-              <%= company.jobTitle %>  <br>
-              <%= company.requireSkills %>  <br>
-              <%= company.jobLocation %>  <br>
+              <h4><%= company.name %></h4>  <br> <br>
+              <b>Description: </b>
+              <%= company.description %>  <br><br>
+              <b>jobTitle: </b>
+              <%= company.jobTitle %>  <br><br>
+              <b>requireSkills: </b>
+              <%= company.requireSkills %>  <br><br>
+              <b>jobLocation: </b>
+              <%= company.jobLocation %>  <br><br>
+              <b>salary:</b>
               <%= company.salary %>  <br>
             </p>
+            <button type="button" class="btn btn-primary"><a class="light" href="https://www.google.com/">Apply</a></button>
           </div>
         </div>
       </a>

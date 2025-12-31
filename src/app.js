@@ -11,6 +11,7 @@ import landingRoute from "./routes/landing.routes.js";
 import {Resume} from "./models/resume.models.js";
 import PDFDocument from "pdfkit";
 import { verifyJWT } from "./middlewares/auth.middlewares.js";
+import setUser from "./middlewares/setUser.middlewares.js";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 //For Layouts
 import engine from "ejs-mate";
+import { set } from "mongoose";
 // const engine = require("ejs-mate");
 app.engine("ejs", engine);
 
@@ -39,6 +41,8 @@ app.engine("ejs", engine);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use( setUser);
 
 app.get("/", (req, res) => {
   res.redirect("/home");
