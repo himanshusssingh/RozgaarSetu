@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Tata Consultancy Services (TCS)",
+    "description": "TCS is a global IT services, consulting, and business solutions organization partnering with clients to simplify, strengthen, and transform their businesses.",
+    "jobTitle": "Software Engineer",
+    "requireSkills": "Java, Spring Boot, SQL, Git, REST APIs",
+    "experience": "0 - 2 Years",
+    "jobLocation": "Bengaluru, India",
+    "salary": "4 - 7 LPA",
+    "careerLink": "https://www.tcs.com/careers"
+  },
+  {
+    "name": "Infosys",
+    "description": "Infosys is a global leader in next-generation digital services and consulting, enabling clients in more than 50 countries.",
+    "jobTitle": "Java Developer",
+    "requireSkills": "Core Java, JDBC, Servlets, Spring, MySQL",
+    "experience": "1 - 3 Years",
+    "jobLocation": "Pune, India",
+    "salary": "5 - 8 LPA",
+    "careerLink": "https://www.infosys.com/careers"
+  },
+  {
+    "name": "Wipro",
+    "description": "Wipro Limited is a leading technology services and consulting company focused on building innovative solutions that address clients’ digital transformation needs.",
+    "jobTitle": "Full Stack Developer",
+    "requireSkills": "HTML, CSS, JavaScript, React, Node.js, MongoDB",
+    "experience": "1 - 4 Years",
+    "jobLocation": "Hyderabad, India",
+    "salary": "6 - 10 LPA",
+    "careerLink": "https://careers.wipro.com"
+  },
+  {
+    "name": "Accenture",
+    "description": "Accenture is a global professional services company with leading capabilities in digital, cloud, and security.",
+    "jobTitle": "Associate Software Engineer",
+    "requireSkills": "Java, Python, Problem Solving, Data Structures",
+    "experience": "0 - 2 Years",
+    "jobLocation": "Gurgaon, India",
+    "salary": "4.5 - 7 LPA",
+    "careerLink": "https://www.accenture.com/in-en/careers"
+  },
+  {
+    "name": "Capgemini",
+    "description": "Capgemini helps organizations accelerate their digital transformation journey through innovative technology solutions.",
+    "jobTitle": "Backend Developer",
+    "requireSkills": "Node.js, Express.js, MongoDB, REST APIs",
+    "experience": "2 - 5 Years",
+    "jobLocation": "Mumbai, India",
+    "salary": "5 - 9 LPA",
+    "careerLink": "https://www.capgemini.com/in-en/careers"
+  },
+  {
+    "name": "HCL Technologies",
+    "description": "HCL Technologies provides IT services and solutions to global enterprises across industries.",
+    "jobTitle": "Frontend Developer",
+    "requireSkills": "HTML, CSS, JavaScript, Bootstrap, React",
+    "experience": "1 - 3 Years",
+    "jobLocation": "Noida, India",
+    "salary": "4 - 6.5 LPA",
+    "careerLink": "https://www.hcltech.com/careers"
+  },
+  {
+    "name": "Zoho Corporation",
+    "description": "Zoho builds powerful cloud-based software to help businesses operate smarter and faster.",
+    "jobTitle": "Software Developer",
+    "requireSkills": "C++, Java, Problem Solving, Algorithms",
+    "experience": "0 - 3 Years",
+    "jobLocation": "Chennai, India",
+    "salary": "6 - 9 LPA",
+    "careerLink": "https://www.zoho.com/careers"
+  },
+  {
+    "name": "Flipkart",
+    "description": "Flipkart is one of India’s leading e-commerce platforms, delivering a seamless shopping experience to millions.",
+    "jobTitle": "Backend Engineer",
+    "requireSkills": "Java, Spring Boot, Microservices, MySQL",
+    "experience": "2 - 6 Years",
+    "jobLocation": "Bengaluru, India",
+    "salary": "10 - 18 LPA",
+    "careerLink": "https://www.flipkartcareers.com"
+  },
+  {
+    "name": "Paytm",
+    "description": "Paytm is a leading digital payments and financial services company in India.",
+    "jobTitle": "Web Developer",
+    "requireSkills": "JavaScript, React, Node.js, REST APIs",
+    "experience": "1 - 4 Years",
+    "jobLocation": "Noida, India",
+    "salary": "6 - 10 LPA",
+    "careerLink": "https://paytm.com/careers"
+  },
+  {
+    "name": "StartUp Hub Pvt Ltd",
+    "description": "A fast-growing startup working on scalable web and mobile applications for global clients.",
+    "jobTitle": "MERN Stack Developer",
+    "requireSkills": "MongoDB, Express, React, Node.js, Git",
+    "experience": "0 - 2 Years",
+    "jobLocation": "Remote",
+    "salary": "5 - 8 LPA",
+    "careerLink": "https://startup.jobs"
+  }
+]

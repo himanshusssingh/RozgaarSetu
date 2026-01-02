@@ -19,6 +19,10 @@ const companySchema = new Schema(
       type: String,
       required: true,
     },
+    experience: {
+      type: String,
+      required: true,
+    },
     jobLocation: {
       type: String,
       required: false,
@@ -26,6 +30,10 @@ const companySchema = new Schema(
     salary: {
       type: String,
       required: false,
+    },
+    careerLink: {
+      type: String,
+      required: true,
     },
   },
   {

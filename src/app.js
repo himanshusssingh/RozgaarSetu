@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
+import axios from "axios";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
 import registerRoute from "./routes/user.routes.js";
@@ -67,13 +69,24 @@ app.get("/download-pdf", verifyJWT, async (req, res) => {
   doc.rect(0, 0, 170, 842).fill(sidebarColor);
 
   /* ================= PROFILE IMAGE ================= */
-  const imagePath = path.join(__dirname, "../public/temp/Himanshu.png");
-  if (imagePath) {
-    doc.save();
-    doc.circle(85, 110, 45).clip();
-    doc.image(imagePath, 40, 65, { width: 90 });
-    doc.restore();
+  if (resume?.profile) {
+    try {
+      const response = await axios.get(resume.profile, {
+        responseType: "arraybuffer",
+      });
+
+      const imageBuffer = Buffer.from(response.data, "binary");
+
+      doc.save();
+      doc.circle(85, 110, 45).clip();
+      doc.image(imageBuffer, 40, 65, { width: 90 });
+      doc.restore();
+    } catch (err) {
+      console.log("Cloudinary image load failed:", err.message);
+    }
   }
+
+
 
   /* ================= SIDEBAR CONTENT ================= */
   doc
