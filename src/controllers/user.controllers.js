@@ -66,6 +66,8 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while creating user.");
   }
 
+  req.flash("success", "User register successfully.");
+
   return (
     res
       .status(201)
@@ -112,6 +114,9 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const resume = await Resume.findOne({ owner: user._id });
 
+  req.flash("success", "User login successfully.");
+
+
   if (resume) {
     return res
       .status(200)
@@ -143,6 +148,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     secure: true,
   };
 
+  req.flash("success", "User Logout Successfully")
   return res
     .status(200)
     .clearCookie("accessToken", options)

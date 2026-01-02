@@ -80,6 +80,9 @@ console.log(phone)
     throw new ApiError(500, "Something went wrong while creating resume.");
   }
 
+  req.flash("success", "Resume created successfully.");
+
+
   return res
     .status(201)
     .redirect("/index");
@@ -127,6 +130,9 @@ const editResume = asyncHandler(async (req, res) => {
   if(!resume) {
     throw new ApiError(404, "Resume not found.")
   }
+
+  req.flash("success", "Resume edited successfully.");
+
 
   return res
     .status(200)
