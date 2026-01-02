@@ -13,6 +13,10 @@ const indexpage = asyncHandler(async(req, res) => {
     res.render("index", {resume, user});
 });
 
+const skillsPage = asyncHandler(async(req, res) => {
+  res.render("skills");
+})
+
 const companyPages = asyncHandler(async (req, res) => {
   const resume = await Resume.findOne({owner: req.user._id});
   const companies = await Company.find();
@@ -47,7 +51,7 @@ const companyPages = asyncHandler(async (req, res) => {
 
   // 12. If no company matched
   if (eligible.length === 0) {
-    res.send("<h2 style='color:red'>NOT ELIGIBLE</h2>");
+    res.redirect("/skills");
   } else {
       res.render("companies", { eligible });
 
@@ -68,4 +72,4 @@ const companyPages = asyncHandler(async (req, res) => {
 });
 
 
-export { homepage, indexpage, companyPages };
+export { homepage, indexpage, companyPages, skillsPage };
