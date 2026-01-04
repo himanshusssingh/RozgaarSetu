@@ -20,14 +20,11 @@
                 <b>Salary:</b>
                 <%= company.salary %>  <br><br>
               </div>
+              
               <div class="d-flex justify-content-center">
-              <a 
-                href="<%= company.careerLink %>" 
-                target="_blank" 
-                class="btn btn-primary w-100 mt-3"
-              >
-                Apply Now
-              </a>
+                <button class="btn btn-success apply-btn" data-job-id="<%= currUser %><%= company._id %>" onclick="applyJob(this)" data-bs-toggle="modal" data-bs-target="#applyModal">
+                  Apply
+                </button>
               </div>
             </div>
           </div>
@@ -35,5 +32,31 @@
         <% } %>
     </div>
   </div>
+
+<!-- Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+
+      <div class="modal-header">
+        <h5 class="modal-title w-100">Application Status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <h4 class="text-success">✅ Applied Successfully</h4>
+        <p>Thank you for applying. We will contact you soon.</p>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          OK
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 

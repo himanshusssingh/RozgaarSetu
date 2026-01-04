@@ -18,7 +18,8 @@ const skillsPage = asyncHandler(async(req, res) => {
 })
 
 const companyPages = asyncHandler(async (req, res) => {
-  const resume = await Resume.findOne({owner: req.user._id});
+  const currUser = req.user.id;
+  const resume = await Resume.findOne({owner: currUser});
   const companies = await Company.find();
 
   let eligible = [];
@@ -53,7 +54,7 @@ const companyPages = asyncHandler(async (req, res) => {
   if (eligible.length === 0) {
     res.redirect("/skills");
   } else {
-      res.render("companies", { eligible });
+      res.render("companies", { eligible, currUser });
 
     // let output = "<h2>Eligible Companies</h2>";
     // eligible.forEach((c) => {
