@@ -24,26 +24,26 @@ const companyPages = asyncHandler(async (req, res) => {
 
   let eligible = [];
 
-  const resumeSkills = resume.skills
-    .toLowerCase()
-    .split(",")
-    .map((s) => s.trim());
+  const normalizeSkills = (skills) =>
+    skills
+      .toLowerCase()
+      .split(",")
+      .map((s) => s.replace(/\./g, "").trim());
+
+
+const resumeSkills = normalizeSkills(resume.skills);
 
   companies.forEach((c) => {
     if (!c.requireSkills) return;
 
     // Company skills → array
-    const companySkills = c.requireSkills
-      .toLowerCase()
-      .split(",")
-      .map(s => s.trim());
+  const companySkills = normalizeSkills(c.requireSkills);
 
     // Match logic
-    const matched = companySkills.some(companySkill =>
-      resumeSkills.some(resumeSkill =>
-        companySkill.includes(resumeSkill)
-      )
+    const matched = resumeSkills.some((resumeSkill) =>
+      companySkills.includes(resumeSkill),
     );
+
 
     if (matched) {
       eligible.push(c);
