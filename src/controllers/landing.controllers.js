@@ -10,7 +10,7 @@ const homepage = (req, res) => {
 const resumePage = asyncHandler(async(req, res) => {
   const user = req.user;
     const resume = await Resume.findOne({owner: req?.user._id})
-    res.render("index", {resume, user});
+    res.render("resume", {resume, user});
 });
 
 const skillsPage = asyncHandler(async(req, res) => {

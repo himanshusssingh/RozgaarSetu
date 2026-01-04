@@ -85,7 +85,7 @@ console.log(phone)
 
   return res
     .status(201)
-    .redirect("/index");
+    .redirect("/resume");
     // .json(new ApiResponse(200, createdResume, "Resume created successfully."));
 });
 
