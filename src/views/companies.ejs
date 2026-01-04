@@ -1,39 +1,71 @@
 <% layout("layouts/boilerplate.ejs") %>
-<body>
-  <div class="container">
-    <div class="row justify-content-center mt-2 ">
-      <% for(let company of eligible){ %> 
-          <div class="card col  border border-primary col-lg-3 col-md-2 m-2" >
-            <div class="card-body p-3">
-              <div class="card-text ">
-                <h4 class="text-center"><%= company.name %></h4>  <br> <br>
-                <b>Description: </b>
-                <%= company.description %>  <br><br>
-                <b>JobTitle: </b>
-                <%= company.jobTitle %>  <br><br>
-                <b>RequireSkills: </b>
-                <%= company.requireSkills %>  <br><br>
-                <b>Experience: </b>
-                <%= company.requireSkills %>  <br><br>
-                <b>JobLocation: </b>
-                <%= company.jobLocation %>  <br><br>
-                <b>Salary:</b>
-                <%= company.salary %>  <br><br>
-              </div>
-              
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-success apply-btn" data-job-id="<%= currUser %><%= company._id %>" onclick="applyJob(this)" data-bs-toggle="modal" data-bs-target="#applyModal">
-                  Apply
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-        <% } %>
-    </div>
-  </div>
 
-<!-- Modal -->
+<div class="container my-4">
+  <div class="row g-4 justify-content-center">
+
+    <% for (let company of eligible) { %>
+      <div class="col-lg-4 col-md-6">
+        <div class="company-card p-4 h-100">
+
+          <!-- Company Name -->
+          <h5 class="company-title text-center mb-1">
+            <%= company.name %>
+          </h5>
+
+          <!-- Job Title -->
+          <p class="job-title text-center mb-3">
+            <%= company.jobTitle %>
+          </p>
+
+          <!-- Description -->
+          <p class="text-muted small">
+            <%= company.description %>
+          </p>
+
+          <hr>
+
+          <!-- Job Info -->
+          <p>
+            <span class="info-label">🛠 Skills:</span>
+            <span class="info-value"><%= company.requireSkills %></span>
+          </p>
+
+          <p>
+            <span class="info-label">📍 Location:</span>
+            <span class="info-value"><%= company.jobLocation %></span>
+          </p>
+
+          <p>
+            <span class="info-label">💼 Experience:</span>
+            <span class="info-value"><%= company.experience || "Fresher / Relevant" %></span>
+          </p>
+
+          <div class="mb-3">
+            <span class="salary-badge">
+              💰 <%= company.salary %>
+            </span>
+          </div>
+
+          <!-- Apply Button -->
+          <div class="text-center mt-auto">
+            <button 
+              class="btn btn-success apply-btn"
+              data-job-id="<%= currUser %><%= company._id %>"
+              onclick="applyJob(this)"
+              data-bs-toggle="modal"
+              data-bs-target="#applyModal">
+              Apply Now
+            </button>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</div>
+
+<!-- APPLY MODAL -->
 <div class="modal fade" id="applyModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content text-center">
@@ -57,6 +89,3 @@
     </div>
   </div>
 </div>
-
-</body>
-
