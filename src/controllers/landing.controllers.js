@@ -7,7 +7,7 @@ const homepage = (req, res) => {
   res.render("home");
 };
 
-const indexpage = asyncHandler(async(req, res) => {
+const resumePage = asyncHandler(async(req, res) => {
   const user = req.user;
     const resume = await Resume.findOne({owner: req?.user._id})
     res.render("index", {resume, user});
@@ -72,5 +72,4 @@ const companyPages = asyncHandler(async (req, res) => {
   }
 });
 
-
-export { homepage, indexpage, companyPages, skillsPage };
+export { homepage, resumePage, companyPages, skillsPage };

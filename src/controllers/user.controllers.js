@@ -122,7 +122,7 @@ const loginUser = asyncHandler(async (req, res) => {
       .status(200)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
-      .redirect("/index");
+      .redirect("/resume");
   } else {
     return res
       .status(200)

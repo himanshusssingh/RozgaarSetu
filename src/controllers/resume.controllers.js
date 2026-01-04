@@ -136,7 +136,7 @@ const editResume = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .redirect("/index")
+    .redirect("/resume")
     // .json(new ApiResponse(200, resume, "All details are Updated."));
 });
 

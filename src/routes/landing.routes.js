@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   homepage,
-  indexpage,
+  resumePage,
   companyPages,
   skillsPage
 } from "../controllers/landing.controllers.js";
@@ -13,7 +13,7 @@ router
   .route("/home")
   .get(homepage)
 
-router.route("/index").get(verifyJWT, indexpage);
+router.route("/resume").get(verifyJWT, resumePage);
 
 router.route("/company").get(verifyJWT, companyPages);
 
