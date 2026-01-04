@@ -5,7 +5,7 @@ body {
 }
 
 /* Navbar */
-.navbar {
+/* .navbar {
     background: #1e3c72;
     color: white;
     padding: 15px 40px;
@@ -27,7 +27,7 @@ body {
     color: white;
     text-decoration: none;
     font-weight: bold;
-}
+} */
 
 /* Main Container */
 .container {
@@ -39,7 +39,7 @@ body {
 
 /* Left Section */
 .left {
-    width: 50%;
+    width: 73%;
 }
 
 .left h1 {
