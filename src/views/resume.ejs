@@ -83,9 +83,42 @@
         <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
           <a href="/resume/editResume" class="btn btn-warning btn-action">✏️ Edit</a>
           <a href="/download-pdf" class="btn btn-outline-primary btn-action">⬇️ Download</a>
-          <a href="/company" class="btn btn-success btn-action">🚀 Submit</a>
+          <% if(isEligible) { %>
+            <a href="/company" class="btn btn-success btn-action">🚀 Submit</a>
+          <% } %>
+          <% if(!isEligible) { %>
+            <button 
+              class="btn btn-success btn-action "
+              data-bs-toggle="modal"
+              data-bs-target="#applyModal">
+              Apply Now
+            </button>
+          <% } %>
         </div>
 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- APPLY MODAL -->
+<div class="modal fade" id="applyModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+
+      <div class="modal-header">
+        <h5 class="modal-title w-100"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <h4 class="text-dark">❌ Not Eligible</h4>
+        <p>You don't have enough skills!</p>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+          <a href="/skills" class="btn btn-primary btn-action">🚀 Explore Skills</a>
       </div>
 
     </div>

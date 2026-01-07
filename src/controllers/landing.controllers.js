@@ -7,19 +7,49 @@ const homepage = (req, res) => {
   res.render("home");
 };
 
-const resumePage = asyncHandler(async(req, res) => {
+// Resume Page Controller
+const resumePage = asyncHandler(async (req, res) => {
   const user = req.user;
-    const resume = await Resume.findOne({owner: req?.user._id})
-    res.render("resume", {resume, user});
+  const resume = await Resume.findOne({ owner: req?.user._id });
+  const companies = await Company.find();
+
+  let eligible = [];
+  const normalizeSkills = (skills) =>
+    skills
+      .toLowerCase()
+      .split(",")
+      .map((s) => s.replace(/\./g, "").trim());
+  const resumeSkills = normalizeSkills(resume.skills);
+  companies.forEach((c) => {
+    if (!c.requireSkills) return;
+    // Company skills → array
+    const companySkills = normalizeSkills(c.requireSkills);
+    // Match logic
+    const matched = resumeSkills.some((resumeSkill) =>
+      companySkills.includes(resumeSkill),
+    );
+    if (matched) {
+      eligible.push(c);
+    }
+  });
+  // 12. If no company matched
+  let isEligible = true;
+  if (eligible.length === 0) {
+    isEligible = false;
+  }
+
+  res.render("resume", { resume, user, isEligible });
 });
 
-const skillsPage = asyncHandler(async(req, res) => {
+//Skill Page Controller
+const skillsPage = asyncHandler(async (req, res) => {
   res.render("skills");
-})
+});
 
+// Company Page Controller
 const companyPages = asyncHandler(async (req, res) => {
   const currUser = req.user.id;
-  const resume = await Resume.findOne({owner: currUser});
+  const resume = await Resume.findOne({ owner: currUser });
   const companies = await Company.find();
 
   let eligible = [];
@@ -30,20 +60,18 @@ const companyPages = asyncHandler(async (req, res) => {
       .split(",")
       .map((s) => s.replace(/\./g, "").trim());
 
-
-const resumeSkills = normalizeSkills(resume.skills);
+  const resumeSkills = normalizeSkills(resume.skills);
 
   companies.forEach((c) => {
     if (!c.requireSkills) return;
 
     // Company skills → array
-  const companySkills = normalizeSkills(c.requireSkills);
+    const companySkills = normalizeSkills(c.requireSkills);
 
     // Match logic
     const matched = resumeSkills.some((resumeSkill) =>
       companySkills.includes(resumeSkill),
     );
-
 
     if (matched) {
       eligible.push(c);
@@ -54,7 +82,7 @@ const resumeSkills = normalizeSkills(resume.skills);
   if (eligible.length === 0) {
     res.redirect("/skills");
   } else {
-      res.render("companies", { eligible, currUser });
+    res.render("companies", { eligible, currUser });
 
     // let output = "<h2>Eligible Companies</h2>";
     // eligible.forEach((c) => {
