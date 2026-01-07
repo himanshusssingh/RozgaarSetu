@@ -38,8 +38,8 @@ body {
     }
 
     .links a {
-        color: #ffc107;
-        text-decoration: none;
+        color: #0c0c0c;
+        text-decoration: underline;
     }
 
     /* Heading animation */
