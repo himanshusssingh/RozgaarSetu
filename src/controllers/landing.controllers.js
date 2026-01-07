@@ -100,4 +100,11 @@ const companyPages = asyncHandler(async (req, res) => {
   }
 });
 
-export { homepage, resumePage, companyPages, skillsPage };
+// For All Company
+const allCompanyPage = asyncHandler(async (req, res) => {
+  const eligible = await Company.find();
+  const currUser = req.user.id;
+  res.render("companies", { eligible, currUser });
+});
+
+export { homepage, resumePage, companyPages, skillsPage, allCompanyPage };
