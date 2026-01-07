@@ -20,7 +20,8 @@ const setUser = async (req, res, next) => {
     const resume = await Resume.findOne({ owner: user._id });
 
     res.locals.currUser = user || null;
-    res.locals.currProfile = resume.profile || null;
+    res.locals.currProfile = resume.profile || "https://res.cloudinary.com/dpercqknb/image/upload/v1767074731/pywpudamofnsipgk5qzz.jpg";
+    res.locals.currentPath = req.path;
     next();
   } catch (err) {
     res.locals.currUser = null;
