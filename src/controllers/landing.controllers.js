@@ -48,8 +48,8 @@ const skillsPage = asyncHandler(async (req, res) => {
 
 // Company Page Controller
 const companyPages = asyncHandler(async (req, res) => {
-  const currUser = req.user.id;
-  const resume = await Resume.findOne({ owner: currUser });
+  const userId = req.user.id;
+  const resume = await Resume.findOne({ owner: userId });
   const companies = await Company.find();
 
   let eligible = [];
@@ -82,7 +82,7 @@ const companyPages = asyncHandler(async (req, res) => {
   if (eligible.length === 0) {
     res.redirect("/skills");
   } else {
-    res.render("companies", { eligible, currUser });
+    res.render("companies", { eligible, userId });
 
     // let output = "<h2>Eligible Companies</h2>";
     // eligible.forEach((c) => {
@@ -103,8 +103,8 @@ const companyPages = asyncHandler(async (req, res) => {
 // For All Company
 const allCompanyPage = asyncHandler(async (req, res) => {
   const eligible = await Company.find();
-  const currUser = req.user.id;
-  res.render("companies", { eligible, currUser });
+  const userId = req.user.id;
+  res.render("companies", { eligible, userId });
 });
 
 export { homepage, resumePage, companyPages, skillsPage, allCompanyPage };

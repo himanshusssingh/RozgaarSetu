@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.models.js";
+import { Resume } from "../models/resume.models.js";
 
 const setUser = async (req, res, next) => {
   try {
@@ -16,8 +17,10 @@ const setUser = async (req, res, next) => {
     const user = await User.findById(decoded._id).select(
       "-password -refreshToken",
     );
+    const resume = await Resume.findOne({ owner: user._id });
 
     res.locals.currUser = user || null;
+    res.locals.currProfile = resume.profile || null;
     next();
   } catch (err) {
     res.locals.currUser = null;
