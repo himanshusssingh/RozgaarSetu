@@ -10,19 +10,18 @@ import registerRoute from "./routes/user.routes.js";
 import resumeRoute from "./routes/resume.routes.js";
 import landingRoute from "./routes/landing.routes.js";
 
-import {Resume} from "./models/resume.models.js";
+import { Resume } from "./models/resume.models.js";
 import PDFDocument from "pdfkit";
 import { verifyJWT } from "./middlewares/auth.middlewares.js";
 import setUser from "./middlewares/setUser.middlewares.js";
 import session from "express-session";
 import flash from "connect-flash";
-
+import passport from "passport";
 
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 // common config
 app.use(
@@ -43,13 +42,19 @@ app.use(
   }),
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;
+  next();
+});
 
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(flash());
-
 
 //For Layouts
 import engine from "ejs-mate";
@@ -62,7 +67,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use( setUser);
+app.use(setUser);
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
@@ -70,10 +75,9 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.get("/", (req, res) => {
   res.redirect("/home");
-})
+});
 
 //For download Resume
 app.get("/download-pdf", verifyJWT, async (req, res) => {
@@ -110,8 +114,6 @@ app.get("/download-pdf", verifyJWT, async (req, res) => {
       console.log("Cloudinary image load failed:", err.message);
     }
   }
-
-
 
   /* ================= SIDEBAR CONTENT ================= */
   doc
@@ -183,9 +185,6 @@ app.get("/download-pdf", verifyJWT, async (req, res) => {
 
   doc.end();
 });
-
-
-
 
 app.use("/", landingRoute);
 app.use("/users", registerRoute);
