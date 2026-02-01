@@ -3,12 +3,14 @@ import { ApiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.models.js";
 
-const verifyJWT = asyncHandler(async (req, _, next) => {
+const verifyJWT = asyncHandler(async (req, res, next) => {
   const incomingAccessToken =
     req.cookies.accessToken ||
     req.header("Authorization")?.replace("Bearer ", "");
 
   if (!incomingAccessToken) {
+    req.flash("error", "Login to access this resource");
+    return res.redirect("/users/login");
     throw new ApiError(401, "Unathorised");
   }
 
@@ -23,6 +25,8 @@ const verifyJWT = asyncHandler(async (req, _, next) => {
     );
 
     if (!user) {
+      req.flash("error", "Login to access this resource");
+      return res.redirect("/users/login");
       throw new ApiError(401, "Unathorized, User not found.");
     }
 

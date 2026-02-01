@@ -11,8 +11,9 @@ const homepage = (req, res) => {
 
 // Resume Page Controller
 const resumePage = asyncHandler(async (req, res) => {
-  const user = req.user;
-  const resume = await Resume.findOne({ owner: req?.user._id });
+  const user = req?.user;
+
+  const resume = await Resume.findOne({ owner: user._id });
   const companies = await Company.find();
 
   let eligible = [];
