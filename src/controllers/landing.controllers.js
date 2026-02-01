@@ -3,6 +3,8 @@ import { Resume } from "../models/resume.models.js";
 import { Company } from "../models/company.models.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+
+// Home Page Controller
 const homepage = (req, res) => {
   res.render("home");
 };
