@@ -24,8 +24,10 @@
     <!-- <div class="container"> -->
         <%- include("../includes/flash.ejs") %>
         <%- body %>
+        <% if(currUser) { %>
         <%- include("../includes/editProfile.ejs") %>
         <%- include("../includes/updatePassword.ejs") %>
+        <% } %>
     <!-- </div> -->
 
     <%- include("../includes/footer.ejs") %>
