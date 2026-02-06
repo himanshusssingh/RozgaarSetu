@@ -36,7 +36,15 @@
                 <span><%= currUser.fullname %></span>
               </a>
                 <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li>
+                     <button 
+                       class="dropdown-item"
+                       type="button"
+                       data-bs-toggle="modal"
+                       data-bs-target="#editProfileModal">
+                       Edit Profile
+                     </button>
+                  </li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>

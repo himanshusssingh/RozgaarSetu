@@ -116,7 +116,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
   req.flash("success", "User login successfully.");
 
-
   if (resume) {
     return res
       .status(200)
@@ -148,13 +147,13 @@ const logoutUser = asyncHandler(async (req, res) => {
     secure: true,
   };
 
-  req.flash("success", "User Logout Successfully")
+  req.flash("success", "User Logout Successfully");
   return res
     .status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
-    .redirect("/home")
-    // .json(new ApiResponse(200, "User logout successfully."));
+    .redirect("/home");
+  // .json(new ApiResponse(200, "User logout successfully."));
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
@@ -238,6 +237,10 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, req?.user, "Current user sended successfully."));
 });
 
+const editProfile = asyncHandler(async (req, res) => {
+  res.render("editProfile");
+});
+
 const updateAccountDetails = asyncHandler(async (req, res) => {
   const { fullname, email } = req.body;
 
@@ -256,9 +259,10 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     { new: true },
   ).select("-password -refreshToken");
 
-  return res
-    .status(200)
-    .json(new ApiResponse(200, user, "All details are Updated."));
+  req.flash("success", "Profile Updated Successfully");
+
+  return res.status(200).redirect("/home");
+  // .json(new ApiResponse(200, user, "All details are Updated."));
 });
 
 export {
@@ -271,4 +275,5 @@ export {
   updateAccountDetails,
   registerForm,
   loginForm,
+  editProfile,
 };
