@@ -226,9 +226,12 @@ const updatePassword = asyncHandler(async (req, res) => {
   user.password = newPassword;
   await user.save({ validateBeforeSave: false });
 
+  req.flash("success", "Password changed successfully.");
+
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Password changed successfully"));
+    .redirect("/home");
+    // .json(new ApiResponse(200, {}, "Password changed successfully"));
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
@@ -237,9 +240,6 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, req?.user, "Current user sended successfully."));
 });
 
-const editProfile = asyncHandler(async (req, res) => {
-  res.render("editProfile");
-});
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
   const { fullname, email } = req.body;
@@ -275,5 +275,4 @@ export {
   updateAccountDetails,
   registerForm,
   loginForm,
-  editProfile,
 };
