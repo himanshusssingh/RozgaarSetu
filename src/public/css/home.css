@@ -212,3 +212,126 @@ footer {
   padding: 10px;
   margin-top: 20px;
 }
+
+
+/* HERO BASE */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ANIMATED BACKGROUND */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    #0f2027,
+    #203a43,
+    #2c5364,
+    #1b1f3b
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* TEXT ANIMATION */
+.hero-heading {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: textReveal 0.9s ease forwards;
+}
+
+.hero-heading span {
+  color: #ffc107;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  margin-top: 20px;
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textReveal 0.9s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.hero-cta {
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* GLASS LOGIN CARD */
+.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateX(40px);
+  animation: cardSlide 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.glass-card input {
+  background: rgba(255,255,255,0.85);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.small-links a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.small-links a:hover {
+  text-decoration: underline;
+}
+
+/* ANIMATIONS */
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 2.4rem;
+  }
+
+  .glass-card {
+    margin-top: 40px;
+  }
+}

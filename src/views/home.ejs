@@ -4,52 +4,56 @@
 <!-- HERO AND LOGIN FOR GUEST USERS -->
 <% if(!currUser) { %>
 <!-- HERO -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center">
+<section class="hero">
+  <div class="hero-bg"></div>
 
-            <!-- LEFT CONTENT -->
-            <div class="col-md-7 mt-5">
-                <h1 class="fw-bold display-4 animate-heading">
-                    Skills Based Job <span class="text-warning">Application Portal</span>
-                </h1>
-                <p class="lead mt-3">
-                    Discover jobs that truly match your skills and grow your career with confidence.
-                </p>
-                <img src="/images/first.png" class="hero-img " alt="Career">
-            </div>
+  <div class="container hero-content">
+    <div class="row align-items-center">
 
-            <!-- LOGIN CARD -->
-            <div class="col-md-4 offset-md-1">
-                <div class="login-card">
-                    <h4 class="text-center fw-bold mb-4">Login to Your Account</h4>
+      <!-- LEFT TEXT -->
+      <div class="col-md-7">
+        <h1 class="hero-heading">
+          Hire by <span>Skills</span>,<br>
+          Not by Resumes
+        </h1>
 
-                    <form action="/users/login" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter username" required>
-                        </div>
+        <p class="hero-text">
+          A modern job application platform where talent meets opportunity.
+          Build your career based on what you can actually do.
+        </p>
 
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Enter password" required>
-                        </div>
-
-                        <button class="btn btn-primary w-100 btn-login">Login</button>
-                    </form>
-
-                    <div class="text-center mt-3 links ">
-                        <a href="/users/register"><b>New User? Sign Up</b></a><br>
-                        <a href="#"><b>Forgot Password</b>?</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="p-0 m-0"> -->
-              <img class="secondHero" src="/images/second.png" alt="second">
-            <!-- </div> -->
+        <div class="hero-cta">
+          <a href="/users/register" class="btn btn-warning">Get Started</a>
+          <a href="/allCompany" class="btn btn-outline-light ms-3">Browse Jobs</a>
         </div>
+      </div>
+
+      <!-- LOGIN CARD -->
+      <div class="col-md-4 offset-md-1">
+        <div class="glass-card">
+          <h4 class="text-center fw-bold mb-4">Login</h4>
+
+          <form action="/users/login" method="post">
+            <div class="mb-3">
+              <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+
+            <div class="mb-3">
+              <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+
+            <button class="btn btn-primary w-100">Login</button>
+          </form>
+
+          <div class="text-center mt-3 small-links">
+            <a href="/users/register">Create account</a> ·
+            <a href="#">Forgot password?</a>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
 <!-- ABOUT SECTION -->
