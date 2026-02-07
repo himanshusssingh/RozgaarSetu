@@ -186,3 +186,150 @@
     margin-bottom: 10px;
   }
 }
+
+/* ===== BACKGROUND ===== */
+.auth-page{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 8%;
+    background: linear-gradient(135deg,#0f2d3a,#1f4b57,#2f6b73);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* animated gradient */
+.auth-page::before{
+    content:"";
+    position:absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle,#ffffff22,transparent 60%);
+    top:-150px;
+    left:-150px;
+    animation: float 8s infinite alternate ease-in-out;
+}
+
+@keyframes float{
+    from{transform:translateY(0px);}
+    to{transform:translateY(40px);}
+}
+
+/* ===== LEFT HERO TEXT ===== */
+
+.auth-left{
+    width:50%;
+    animation: slideLeft 1s ease;
+}
+
+.hero-title{
+    font-size:56px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+.hero-title span{
+    color:#ffc107;
+}
+
+.hero-sub{
+    margin-top:20px;
+    font-size:18px;
+    color:#d7e4ea;
+    max-width:520px;
+}
+
+.hero-badge{
+    margin-top:25px;
+    background:#ffffff18;
+    padding:12px 20px;
+    border-radius:30px;
+    display:inline-block;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== GLASS REGISTER CARD ===== */
+
+.auth-card{
+    width:380px;
+    padding:40px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+    animation: slideRight 1s ease;
+}
+
+.auth-card h2{
+    font-weight:600;
+    text-align:center;
+}
+
+/* ===== INPUTS ===== */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-control{
+    background:rgba(255,255,255,0.15);
+    border:none;
+    color:white;
+    padding:12px 14px;
+    border-radius:10px;
+}
+
+.form-control::placeholder{
+    color:#e0e0e0;
+}
+
+.form-control:focus{
+    background:rgba(255,255,255,0.25);
+    box-shadow:none;
+    color:white;
+}
+
+/* ===== BUTTON ===== */
+
+.btn-register{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ffc107;
+    color:black;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-register:hover{
+    background:#ffca2c;
+    transform:translateY(-2px);
+}
+
+/* links */
+
+.auth-links{
+    text-align:center;
+    margin-top:18px;
+}
+
+.auth-links a{
+    color:#ffc107;
+    text-decoration:none;
+    font-weight:500;
+}
+
+/* animations */
+
+@keyframes slideLeft{
+    from{opacity:0; transform:translateX(-50px);}
+    to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes slideRight{
+    from{opacity:0; transform:translateX(50px);}
+    to{opacity:1; transform:translateX(0);}
+}
