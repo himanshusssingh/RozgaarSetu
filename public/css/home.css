@@ -230,10 +230,15 @@ footer {
   inset: 0;
   background: linear-gradient(
     -45deg,
+    /* #8d8e95,
+    #acb1c0,
+    #bcbdc5,
+    #cacbd0 */
     #0f2027,
     #203a43,
     #2c5364,
     #1b1f3b
+
   );
   background-size: 400% 400%;
   animation: gradientMove 12s ease infinite;
