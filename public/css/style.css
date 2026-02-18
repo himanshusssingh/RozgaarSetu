@@ -350,7 +350,7 @@
 
 /* floating particles effect */
 
-.auth-page::after {
+/* .auth-page::after {
   content: "";
   position: absolute;
   right: -120px;
@@ -359,7 +359,7 @@
   height: 500px;
   background: radial-gradient(circle, #ffc10733, transparent 60%);
   animation: float2 10s infinite alternate ease-in-out;
-}
+} */
 
 @keyframes float2 {
   from {
