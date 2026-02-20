@@ -1,5 +1,5 @@
 .company-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #d0d1d3, #f4e6c1);
   border-radius: 18px;
   border: none;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);

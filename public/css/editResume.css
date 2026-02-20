@@ -1,5 +1,5 @@
 .edit-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #d0d1d3, #f4e6c1);
   border-radius: 20px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
   animation: fadeInUp 0.7s ease forwards;
