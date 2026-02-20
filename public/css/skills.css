@@ -1,15 +1,28 @@
-        .skill-card {
-            border: 2px solid #0d6efd;
-            border-radius: 15px;
-            transition: 0.3s;
-            height: 100%;
-        }
+.skill-card {
+  background: linear-gradient(135deg, #d0d1d3, #f4e6c1);
+  border: none !important;
+  border-radius: 18px !important;
+  transition: all 0.35s ease;
+  animation: fadeUp 0.6s ease both;
+}
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
 
-        .badge-demand {
-            background-color: #198754;
-        }
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.badge-demand {
+  background-color: #198754;
+}
