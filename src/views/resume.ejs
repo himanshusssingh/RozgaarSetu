@@ -31,49 +31,81 @@
           <div class="col-md-6">
             <div class="resume-section">
               <div class="label">📍 Address</div>
-              <div class="value"><%= resume.address %></div>
+              <div class="value">
+                <% resume.address.split(',').forEach(function (add) { %>
+                  <div>• <%= add.trim() %></div>
+                <% }) %>
+              </div>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="resume-section">
               <div class="label">💡 Skills</div>
-              <div class="value"><%= resume.skills %></div>
+              <div class="value">
+                <% if(resume.skills){ %>
+                  <% resume.skills.split(',').forEach(function(skill){ %>
+                    <div>• <%= skill.trim() %></div>
+                  <% }) %>
+                <% } %>
+              </div>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="resume-section">
               <div class="label">🎓 Education</div>
-              <div class="value"><%= resume.education %></div>
+              <div class="value">
+                <% if(resume.education){ %>
+                  <% resume.education.split(',').forEach(function(edu){ %>
+                    <div>• <%= edu.trim() %></div>
+                  <% }) %>
+                <% } %>
+              </div>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="resume-section">
               <div class="label">🧑‍💼 Experience</div>
-              <div class="value"><%= resume.experience %></div>
+              <div class="value">
+                <% resume.experience.split(',').forEach(function(exp){ %>
+                  <div>• <%= exp.trim() %></div>
+                <% }) %>
+              </div>  
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="resume-section">
               <div class="label">💪 Strength</div>
-              <div class="value"><%= resume.strength %></div>
+              <div class="value">
+                <% resume.strength.split(',').forEach(function(strength){ %>
+                  <div>• <%= strength.trim() %></div>
+                <% }) %>
+              </div>
             </div>
           </div>
 
           <div class="col-12">
             <div class="resume-section">
               <div class="label">🎯 Career Objective</div>
-              <div class="value mt-2"><%= resume.careerObjective %></div>
+              <div class="value mt-2">
+                <% resume.careerObjective.split(',').forEach(function(obj){ %>
+                  <div>• <%= obj.trim() %></div>
+                <% }) %>
+              </div>
             </div>
           </div>
 
           <div class="col-12">
             <div class="resume-section">
               <div class="label">🎨 Hobbies</div>
-              <div class="value"><%= resume.hobbies %></div>
+              <div class="value">
+                <% resume.hobbies.split(',').forEach(function (hobbie) { %>
+                <div>• <%= hobbie.trim() %></div>
+                <% }) %>
+              </div>  
             </div>
           </div>
 

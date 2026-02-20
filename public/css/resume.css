@@ -1,9 +1,5 @@
-/* ----------------------- */
-/* For resume page */
-/* --------------------- */
-/* Main Resume Card */
 .resume-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #d0d1d3, #f4e6c1);
   border-radius: 22px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   transform-style: preserve-3d;
