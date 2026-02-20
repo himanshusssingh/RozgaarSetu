@@ -11,7 +11,7 @@
           height="50"
           style="object-fit: cover;"
         >
-      Skills Based Job Application Portal</a>
+      RozgaarSetu</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,12 +26,13 @@
         <li class="nav-item">
           <a class="nav-link <%= currentPath === '/allCompany' ? 'active' : '' %>" href="/allCompany">Companies</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link <%= currentPath === '/skills' ? 'active' : '' %>" href="/skills">Trending Skills</a>
+        </li>
         <% if(!currUser) { %>
-           <li class="nav-item"><a class="nav-link <%= currentPath === '/users/login' ? 'active' : '' %>" href="/users/login">Login</a></li>
-           <li class="nav-item"><a class="nav-link <%= currentPath === '/users/register' ? 'active' : '' %>" href="/users/register">Register</a></li>
+           <li class="nav-item"><a class="nav-link <%= currentPath === '/users/register' ? 'active' : '' %>" href="/users/register">Register User</a></li>
         <% } %>
-        <% if(currUser) { %>
-           <li class="nav-item"><a class="nav-link" href="/users/logout">Logout</a></li>        
+        <% if(currUser) { %>       
            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img 
@@ -64,7 +65,7 @@
                     </button>
                   </li>
 
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="/users/logout">Logout</a></li>
                 </ul>
            </li>
         <% } %>
