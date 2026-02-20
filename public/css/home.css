@@ -18,15 +18,9 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-    /* background: linear-gradient(-45deg, #d0d1d3, #f4e6c1); */
+  /* background: linear-gradient(-45deg, #d0d1d3, #f4e6c1); */
 
-  background: linear-gradient(
-    -45deg,
-    #0f2027,
-    #203a43,
-    #2c5364,
-    #1b1f3b 
-  );
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1b1f3b);
   background-size: 400% 400%;
   animation: gradientMove 12s ease infinite;
   z-index: -1;
@@ -138,6 +132,7 @@ body {
 
 /* For Dashboard card */
 .dashboard-card {
+  background: linear-gradient(135deg, #d0d1d3, #f4e6c1);
   border: none;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -181,12 +176,11 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-
 /* About Section */
 
 /* .about-section {
   background: linear-gradient(135deg, #d0d1d3, #ffffff1f); */
-  /* min-height: 80vh;
+/* min-height: 80vh;
 } */
 
 .about-card {
@@ -304,8 +298,6 @@ body {
   transition: all 0.35s ease;
 }
 
-
-
 /* Heading */
 .contact-section h2 {
   font-weight: 700;
@@ -351,10 +343,6 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(79, 70, 229, 0.35);
 }
-
-
-
-
 
 /* Footer */
 footer {
