@@ -13,14 +13,23 @@ import jwt from "jsonwebtoken";
 
 const resumeForm = (req, res) => {
   res.render("resumeForm");
-}
+};
 
 const createResume = asyncHandler(async (req, res) => {
-  const { phone, address, skills, education, experience, careerObjective, strength, hobbies } = req.body;
+  const {
+    phone,
+    address,
+    skills,
+    education,
+    experience,
+    careerObjective,
+    strength,
+    hobbies,
+  } = req.body;
 
-console.log(phone)
+  console.log(phone);
 
-  const owner = req.user._id
+  const owner = req.user._id;
 
   console.log(owner);
 
@@ -47,22 +56,31 @@ console.log(phone)
     throw new ApiError(409, "Resume already existed!");
   }
 
-  const profileLocalPath = req.file?.path;
+  let userProfile;
 
-  console.log("______________");
+  if (req.file?.path) {
+    const profileLocalPath = req.file?.path;
 
-  if (!profileLocalPath) {
-    throw new ApiError(400, "Profile file is required");
-  }
+    console.log("______________");
 
-  const profile = await uploadOnCloudinary(profileLocalPath);
+    if (!profileLocalPath) {
+      throw new ApiError(400, "Profile local path is not found.");
+    }
 
-  if (!profile) {
-    throw new ApiError(400, "Profile file is required.");
+    const profile = await uploadOnCloudinary(profileLocalPath);
+
+    if (!profile) {
+      throw new ApiError(400, "Profile is not found.");
+    }
+
+     userProfile = profile.url;
+  } else {
+     userProfile =
+      "https://res.cloudinary.com/dpercqknb/image/upload/v1771603352/User_fzpdhx.jpg";
   }
 
   const resume = await Resume.create({
-    profile: profile.url,
+    profile: userProfile,
     phone,
     address,
     skills,
@@ -71,7 +89,7 @@ console.log(phone)
     careerObjective,
     strength,
     hobbies,
-    owner
+    owner,
   });
 
   const createdResume = await Resume.findById(resume._id);
@@ -82,16 +100,13 @@ console.log(phone)
 
   req.flash("success", "Resume created successfully.");
 
-
-  return res
-    .status(201)
-    .redirect("/resume");
-    // .json(new ApiResponse(200, createdResume, "Resume created successfully."));
+  return res.status(201).redirect("/resume");
+  // .json(new ApiResponse(200, createdResume, "Resume created successfully."));
 });
 
-const editResumeForm = asyncHandler(async(req, res) => {
+const editResumeForm = asyncHandler(async (req, res) => {
   const resume = await Resume.findOne({ owner: req.user._id });
-  res.render("editResume", {resume});
+  res.render("editResume", { resume });
 });
 
 const editResume = asyncHandler(async (req, res) => {
@@ -106,12 +121,21 @@ const editResume = asyncHandler(async (req, res) => {
     hobbies,
   } = req.body;
 
-  if (!phone || !address || !skills || !education || !experience || !careerObjective || !strength || !hobbies) {
+  if (
+    !phone ||
+    !address ||
+    !skills ||
+    !education ||
+    !experience ||
+    !careerObjective ||
+    !strength ||
+    !hobbies
+  ) {
     throw new ApiError(409, "Data are required.");
   }
 
   const resume = await Resume.findOneAndUpdate(
-    {owner: req?.user._id},
+    { owner: req?.user._id },
     {
       $set: {
         phone,
@@ -125,19 +149,16 @@ const editResume = asyncHandler(async (req, res) => {
       },
     },
     { new: true },
-  )
+  );
 
-  if(!resume) {
-    throw new ApiError(404, "Resume not found.")
+  if (!resume) {
+    throw new ApiError(404, "Resume not found.");
   }
 
   req.flash("success", "Resume edited successfully.");
 
-
-  return res
-    .status(200)
-    .redirect("/resume")
-    // .json(new ApiResponse(200, resume, "All details are Updated."));
+  return res.status(200).redirect("/resume");
+  // .json(new ApiResponse(200, resume, "All details are Updated."));
 });
 
 // const changeProfile = asyncHandler(async (req, res) => {
@@ -189,9 +210,4 @@ const editResume = asyncHandler(async (req, res) => {
 //     .json(new ApiResponse(200, avatar.url, "Avatar changed Successfully."));
 // });
 
-export {
-  createResume,
-  editResume,
-  resumeForm,
-  editResumeForm,
-};
+export { createResume, editResume, resumeForm, editResumeForm };
