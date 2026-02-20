@@ -173,7 +173,7 @@
 
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    background-color: white;
+    background-color: rgb(1, 0, 0);
     padding: 1rem;
     border-radius: 0 0 12px 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -192,8 +192,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 80px 8%;
-  background: linear-gradient(135deg, #0f2d3a, #1f4b57, #2f6b73);
-  color: white;
+  background: #f1f1f1;
+  color: #6E6E6E;
   position: relative;
   overflow: hidden;
 }
@@ -239,7 +239,7 @@
 .hero-sub {
   margin-top: 20px;
   font-size: 18px;
-  color: #d7e4ea;
+  color: #6E6E6E;
   max-width: 520px;
 }
 
