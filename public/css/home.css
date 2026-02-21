@@ -351,68 +351,87 @@ body {
   font-size: 1.8rem;
 }
 
-/* ================= CONTACT SECTION ================= */
+/* ===== CONTACT SECTION ===== */
 
-.contact-section {
-  /* background: linear-gradient(135deg, #d0d1d3, #ffffff1f); */
-  position: relative;
+.contact-section{
+  background: linear-gradient(180deg,#f8fafc,#eef3f9);
 }
 
-/* Form Card */
-.contact-section .col-md-6 {
-  background: rgba(255, 255, 255, 0.75);
-  padding: 35px 30px;
-  border-radius: 18px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-  transition: all 0.35s ease;
+/* Left info box */
+.contact-info{
+  padding: 10px 10px;
 }
 
-/* Heading */
-.contact-section h2 {
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #1e293b;
+.contact-item{
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  align-items: center;
 }
 
-.contact-section p {
-  font-size: 15px;
-}
-
-/* Inputs */
-.contact-section .form-control {
+.contact-item .icon{
+  width: 45px;
+  height: 45px;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  padding: 14px 14px;
-  font-size: 15px;
-  background: #ffffff;
-  transition: all 0.25s ease;
-  box-shadow: none;
+  font-size: 20px;
 }
 
-/* Focus Animation */
-.contact-section .form-control:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-  outline: none;
-}
-
-/* Textarea resize fix */
-.contact-section textarea {
-  resize: none;
-}
-
-/* Button Premium Style */
-.contact-section .btn-primary {
-  border-radius: 12px;
-  padding: 13px;
+.contact-item h6{
+  margin: 0;
   font-weight: 600;
-  font-size: 16px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  border: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.35);
+}
+
+.contact-item p{
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Form card */
+.contact-form-box{
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* Input styling */
+.contact-form-box .form-control{
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.contact-form-box .form-control:focus{
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.15rem rgba(37,99,235,0.2);
+}
+
+/* Social links */
+.social-links a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 10px;
+  margin-right: 10px;
+  color: #2563eb;
+  font-size: 18px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  transition: .3s;
+}
+
+.social-links a:hover{
+  transform: translateY(-3px);
+  background: #2563eb;
+  color: white;
 }
 
 /* Footer */
