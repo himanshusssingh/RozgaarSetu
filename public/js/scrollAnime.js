@@ -5,14 +5,18 @@ const revealElements = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
+      // When element comes into view
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
-      } else {
-        entry.target.classList.remove("active");
       }
     });
   },
-  { threshold: 0.35 },
+  {
+    threshold: 0.35, // 15% visible triggers animation
+  },
 );
 
-revealElements.forEach((el) => observer.observe(el));
+// observe each element
+revealElements.forEach((el) => {
+  observer.observe(el);
+});
