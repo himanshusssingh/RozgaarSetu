@@ -18,7 +18,7 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(-45deg, #423f42, #6E6E6E, #909090, #303030);
+  background: linear-gradient(-45deg, #423f42, #6e6e6e, #909090, #303030);
 
   /* background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1b1f3b); */
   background-size: 400% 400%;
@@ -207,10 +207,81 @@ body {
 }
 
 .about-highlight {
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  background: linear-gradient(135deg, #a1a0a1, #636063);
   border-radius: 18px;
   padding: 40px;
-  box-shadow: 0 15px 40px rgba(79, 70, 229, 0.3);
+}
+
+/* ===== STATS ===== */
+
+.stats-row {
+  margin-top: 60px;
+}
+
+.stat-box {
+  background: white;
+  border-radius: 18px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.stat-box:hover {
+  transform: translateY(-6px);
+}
+
+.stat-number {
+  font-size: 34px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.stat-box p {
+  margin: 0;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* ===== TEAM SECTION ===== */
+
+.team-section {
+  margin-top: 70px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px 22px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+  height: 100%;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.team-role {
+  display: block;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* ===== MISSION ===== */
+
+.mission-card {
+  background: #f1f5ff;
+  padding: 35px;
+  border-radius: 20px;
+  height: 100%;
+}
+
+.mission-card h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 /* Features Section */
@@ -346,7 +417,7 @@ body {
 
 /* Footer */
 footer {
-  background: #6E6E6E;
+  background: #6e6e6e;
   color: white;
   text-align: center;
   padding: 10px;
