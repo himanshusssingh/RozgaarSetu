@@ -45,7 +45,9 @@ const createResume = asyncHandler(async (req, res) => {
       hobbies,
     ].some((field) => field?.trim() === "")
   ) {
-    throw new ApiError(400, "All fields are required.");
+    // throw new ApiError(400, "All fields are required.");
+    res.render("error", {message: "All fields are required!"});
+    return;
   }
 
   const existedResume = await Resume.findOne({
@@ -53,7 +55,9 @@ const createResume = asyncHandler(async (req, res) => {
   });
 
   if (existedResume) {
-    throw new ApiError(409, "Resume already existed!");
+    // throw new ApiError(409, "Resume already existed!");
+    res.render("error", {message: "Resume already existed!"});
+    return;
   }
 
   let userProfile;
@@ -64,13 +68,17 @@ const createResume = asyncHandler(async (req, res) => {
     console.log("______________");
 
     if (!profileLocalPath) {
-      throw new ApiError(400, "Profile local path is not found.");
+      // throw new ApiError(400, "Profile local path is not found.");
+      res.render("error", {message: "Profile local path is not found."});
+      return;
     }
 
     const profile = await uploadOnCloudinary(profileLocalPath);
 
     if (!profile) {
-      throw new ApiError(400, "Profile is not found.");
+      // throw new ApiError(400, "Profile is not found.");
+      res.render("error", {message: "Profile is not found."});
+      return;
     }
 
      userProfile = profile.url;
@@ -95,7 +103,9 @@ const createResume = asyncHandler(async (req, res) => {
   const createdResume = await Resume.findById(resume._id);
 
   if (!createdResume) {
-    throw new ApiError(500, "Something went wrong while creating resume.");
+    // throw new ApiError(500, "Something went wrong while creating resume.");
+    res.render("error", {message: "Something went wrong while creating resume."});
+    return;
   }
 
   req.flash("success", "Resume created successfully.");
@@ -131,7 +141,9 @@ const editResume = asyncHandler(async (req, res) => {
     !strength ||
     !hobbies
   ) {
-    throw new ApiError(409, "Data are required.");
+    // throw new ApiError(409, "Data are required.");
+    res.render("error", {message: "Data are required!"});
+    return;
   }
 
   const resume = await Resume.findOneAndUpdate(
@@ -152,7 +164,9 @@ const editResume = asyncHandler(async (req, res) => {
   );
 
   if (!resume) {
-    throw new ApiError(404, "Resume not found.");
+    // throw new ApiError(404, "Resume not found.");
+    res.render("error", {message: "Resume not found!"});
+    return;
   }
 
   req.flash("success", "Resume edited successfully.");

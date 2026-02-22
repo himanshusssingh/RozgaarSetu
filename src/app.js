@@ -189,5 +189,8 @@ app.get("/download-pdf", verifyJWT, async (req, res) => {
 app.use("/", landingRoute);
 app.use("/users", registerRoute);
 app.use("/resume", resumeRoute);
+app.use((req, res) => {
+  res.status(404).render("error", {message: "Page not found!"});
+})
 
 export default app;
