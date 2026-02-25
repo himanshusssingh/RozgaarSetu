@@ -21,6 +21,8 @@
         <form
           action="/resume/editResume"
           method="POST"
+          novalidate
+          class="needs-validation"
         >
 
           <div class="row">
@@ -34,6 +36,7 @@
                 value="<%= resume.phone %>"
                 required
               >
+              <div class="invalid-feedback">Enter a valid phone number</div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -45,6 +48,7 @@
                 value="<%= resume.address %>"
                 required
               >
+              <div class="invalid-feedback">Enter a valid address</div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -56,6 +60,7 @@
                 value="<%= resume.skills %>"
                 required
               >
+              <div class="invalid-feedback">Enter your skills</div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -67,6 +72,7 @@
                 value="<%= resume.education %>"
                 required
               >
+              <div class="invalid-feedback">Enter your education details</div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -78,6 +84,7 @@
                 value="<%= resume.experience %>"
                 required
               >
+              <div class="invalid-feedback">Enter your work experience</div>
             </div>
 
             <div class="col-md-6 mb-3">
@@ -89,6 +96,7 @@
                 value="<%= resume.strength %>"
                 required
               >
+              <div class="invalid-feedback">Enter your strengths</div>
             </div>
 
             <div class="col-12 mb-3">
@@ -99,6 +107,7 @@
                 rows="4"
                 required
               ><%= resume.careerObjective %></textarea>
+              <div class="invalid-feedback">Enter your career objective</div>
             </div>
 
             <div class="col-12 mb-4">
@@ -110,6 +119,7 @@
                 value="<%= resume.hobbies %>"
                 required
               >
+              <div class="invalid-feedback">Enter your hobbies</div>
             </div>
 
           </div>
