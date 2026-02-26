@@ -4,6 +4,7 @@ import {
   editResume,
   editResumeForm,
   resumeForm,
+  downloadResume,
   // changeProfile,
 } from "../controllers/resume.controllers.js";
 import { upload } from "../middlewares/multer.middlewares.js";
@@ -25,5 +26,7 @@ router.route("/editResume")
 // router
 //   .route("/changeProfile")
 //   .post(verifyJWT, upload.single("profile"), changeProfile);
+
+router.get("/downloadResume", verifyJWT, downloadResume);
 
 export default router;
