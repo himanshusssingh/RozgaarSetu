@@ -611,18 +611,21 @@
   <div class="reveal col-md-7">
     <div class="contact-form-box">
 
-      <form action="/home" method="post">
+      <form action="/home" method="post" class="needs-validation" novalidate>
 
         <div class="mb-3">
           <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+          <div class="invalid-feedback">Please enter your name.</div>
         </div>
 
         <div class="mb-3">
           <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+          <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
 
         <div class="mb-3">
           <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+          <div class="invalid-feedback">Please enter your message.</div>
         </div>
 
         <button class="btn btn-primary w-100">
