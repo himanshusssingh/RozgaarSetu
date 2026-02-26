@@ -3,7 +3,6 @@ import { Resume } from "../models/resume.models.js";
 import { Company } from "../models/company.models.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
-
 // Home Page Controller
 const homepage = (req, res) => {
   res.render("home");
@@ -13,28 +12,51 @@ const homepage = (req, res) => {
 const resumePage = asyncHandler(async (req, res) => {
   const user = req?.user;
 
+  if (!user) {
+    res.redirect("/login");
+    return;
+  }
+
   const resume = await Resume.findOne({ owner: user._id });
+
+  if (!resume) {
+    res.redirect("/resume/createResume");
+    return;
+  }
+
   const companies = await Company.find();
 
   let eligible = [];
+
   const normalizeSkills = (skills) =>
     skills
       .toLowerCase()
       .split(",")
       .map((s) => s.replace(/\./g, "").trim());
+  
+  if (!resume.skills) {
+    res.redirect("/resume/createResume");
+    return;
+  }
+
   const resumeSkills = normalizeSkills(resume.skills);
+
   companies.forEach((c) => {
     if (!c.requireSkills) return;
+
     // Company skills → array
     const companySkills = normalizeSkills(c.requireSkills);
+
     // Match logic
     const matched = resumeSkills.some((resumeSkill) =>
       companySkills.includes(resumeSkill),
     );
+
     if (matched) {
       eligible.push(c);
     }
   });
+
   // 12. If no company matched
   let isEligible = true;
   if (eligible.length === 0) {
@@ -52,8 +74,19 @@ const skillsPage = asyncHandler(async (req, res) => {
 // Company Page Controller
 const companyPages = asyncHandler(async (req, res) => {
   const userId = req.user.id;
+
+  if (!userId) {
+    res.redirect("/login");
+    return;
+  }
+
   const resume = await Resume.findOne({ owner: userId });
   const companies = await Company.find();
+
+  if (!resume) {
+    res.redirect("/resume/createResume");
+    return;
+  }
 
   let eligible = [];
 
@@ -62,6 +95,11 @@ const companyPages = asyncHandler(async (req, res) => {
       .toLowerCase()
       .split(",")
       .map((s) => s.replace(/\./g, "").trim());
+
+  if (!resume.skills) {
+    res.redirect("/resume/createResume");
+    return;
+  }
 
   const resumeSkills = normalizeSkills(resume.skills);
 
@@ -81,25 +119,13 @@ const companyPages = asyncHandler(async (req, res) => {
     }
   });
 
+  const isAllCompany = false;
+
   // 12. If no company matched
   if (eligible.length === 0) {
     res.redirect("/skills");
   } else {
-    res.render("companies", { eligible, userId });
-
-    // let output = "<h2>Eligible Companies</h2>";
-    // eligible.forEach((c) => {
-    //   output += `
-    //   <div>
-    //     <p><b>${c.name}</b></p>
-    //     Skill Required: ${c.skill}<br>
-    //     Experience: ${c.experience}<br>
-    //     <form action="apply.html">
-    //       <button>Apply</button>
-    //     </form>
-    //   </div><hr>`;
-    // });
-    // res.send(output);
+    res.render("companies", { eligible, userId, isAllCompany });
   }
 });
 
@@ -107,7 +133,8 @@ const companyPages = asyncHandler(async (req, res) => {
 const allCompanyPage = asyncHandler(async (req, res) => {
   const eligible = await Company.find();
   const userId = req.user.id;
-  res.render("companies", { eligible, userId });
+  const isAllCompany = true;
+  res.render("companies", { eligible, userId, isAllCompany });
 });
 
 export { homepage, resumePage, companyPages, skillsPage, allCompanyPage };
