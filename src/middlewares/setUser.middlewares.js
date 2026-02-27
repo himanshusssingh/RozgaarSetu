@@ -17,11 +17,24 @@ const setUser = async (req, res, next) => {
     const user = await User.findById(decoded._id).select(
       "-password -refreshToken",
     );
+
+    if (!user) {
+      res.locals.currUser = null;
+      return next();
+    }
+
+    res.locals.currUser = user;
+
     const resume = await Resume.findOne({ owner: user._id });
 
-    res.locals.currUser = user || null;
-    res.locals.currProfile = resume.profile || "https://res.cloudinary.com/dpercqknb/image/upload/v1767074731/pywpudamofnsipgk5qzz.jpg";
-    next();
+    if (!resume) {
+      res.locals.currProfile =
+        "https://res-console.cloudinary.com/dpercqknb/thumbnails/v1/image/upload/v1771603352/VXNlcl9menBkaHg=/drilldown";
+      next();
+    } else {
+      res.locals.currProfile = resume.profile;
+      next();
+    }
   } catch (err) {
     res.locals.currUser = null;
     next(); // ❗ NEVER throw here

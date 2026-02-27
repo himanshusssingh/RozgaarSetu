@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
     [username, email, fullname, password].some((field) => field?.trim() === "")
   ) {
     // throw new ApiError(400, "All fields are required.");
-    res.render("error", {message: "All fields are required."});
+    res.render("error", { message: "All fields are required." });
     return;
   }
 
@@ -51,9 +51,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (existedUser) {
     // throw new ApiError(409, "User already existed!");
-    res.render("error", {message: "User already existed!"});
+    res.render("error", { message: "User already existed!" });
     return;
-
   }
 
   const user = await User.create({
@@ -68,10 +67,12 @@ const registerUser = asyncHandler(async (req, res) => {
   );
 
   if (!createdUser) {
-      // throw new ApiError(500, "Something went wrong while creating user.");
-      res.render("error", {message: "Something went wrong while creating user."});
-      return;
-  }    
+    // throw new ApiError(500, "Something went wrong while creating user.");
+    res.render("error", {
+      message: "Something went wrong while creating user.",
+    });
+    return;
+  }
 
   req.flash("success", "User register successfully.");
 
@@ -92,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!email && !username) {
     // throw new ApiError(400, "Email is required!");
-    res.render("error", {message: "Email and Username is required!"});
+    res.render("error", { message: "Email and Username is required!" });
     return;
   }
 
@@ -100,7 +101,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     // throw new ApiError(404, "User not exist!");
-    res.render("error", {message: "User not exist!"});
+    res.render("error", { message: "User not exist!" });
     return;
   }
 
@@ -108,7 +109,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!isPasswordValid) {
     // throw new ApiError(401, "Password is incorrect!");
-    res.render("error", {message: "Password is incorrect!"});
+    res.render("error", { message: "Password is incorrect!" });
     return;
   }
 
@@ -129,19 +130,20 @@ const loginUser = asyncHandler(async (req, res) => {
 
   req.flash("success", "User login successfully.");
 
-  if (resume) {
-    return res
-      .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
-      .redirect("/home");
-  } else {
-    return res
-      .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
-      .redirect("/resume/createResume");
-  }
+  // if (resume) {
+  return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .redirect("/home");
+  //  }
+  // else {
+  //   return res
+  //     .status(200)
+  //     .cookie("accessToken", accessToken, options)
+  //     .cookie("refreshToken", refreshToken, options)
+  //     .redirect("/resume/createResume");
+  // }
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -175,7 +177,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
   if (!incomingRefreshToken) {
     // throw new ApiError(401, "Unathoreised Access.");
-    res.render("error", {message: "Unathoreised Access!"});
+    res.render("error", { message: "Unathoreised Access!" });
     return;
   }
 
@@ -189,13 +191,13 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     if (!user) {
       // throw new ApiError(401, "Invalid refresh token.");
-      res.render("error", {message: "Invalid refresh token!"});
+      res.render("error", { message: "Invalid refresh token!" });
       return;
     }
 
     if (incomingRefreshToken !== user.refreshToken) {
       // throw new ApiError(401, "Refresh token is expired.");
-      res.render("error", {message: "Refresh token is expired!"});
+      res.render("error", { message: "Refresh token is expired!" });
       return;
     }
 
@@ -220,7 +222,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       );
   } catch (err) {
     // throw new ApiError(401, "invalid refresh token.");
-    res.render("error", {message: "Invalid refresh token!"});
+    res.render("error", { message: "Invalid refresh token!" });
     return;
   }
 });
@@ -230,7 +232,9 @@ const updatePassword = asyncHandler(async (req, res) => {
 
   if (!oldPassword || !newPassword) {
     // throw new ApiError(409, "Old password and new password is required.");
-    res.render("error", {message: "Old password and new password is required!"});
+    res.render("error", {
+      message: "Old password and new password is required!",
+    });
     return;
   }
 
@@ -238,14 +242,14 @@ const updatePassword = asyncHandler(async (req, res) => {
 
   if (!user) {
     // throw new ApiError(404, "Unathorezed access.");
-    res.render("error", {message: "Unathorezed access!"});
+    res.render("error", { message: "Unathorezed access!" });
     return;
   }
 
   const isPasswordValid = await user.isPasswordCorrect(oldPassword);
 
   if (!isPasswordValid) {
-    res.render("error", {message: "Old Password is incorrect!"});
+    res.render("error", { message: "Old Password is incorrect!" });
     return;
   }
 
@@ -254,10 +258,8 @@ const updatePassword = asyncHandler(async (req, res) => {
 
   req.flash("success", "Password changed successfully.");
 
-  return res
-    .status(200)
-    .redirect("/home");
-    // .json(new ApiResponse(200, {}, "Password changed successfully"));
+  return res.status(200).redirect("/home");
+  // .json(new ApiResponse(200, {}, "Password changed successfully"));
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
@@ -266,13 +268,12 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, req?.user, "Current user sended successfully."));
 });
 
-
 const updateAccountDetails = asyncHandler(async (req, res) => {
   const { fullname, email } = req.body;
 
   if (!fullname || !email) {
     // throw new ApiError(409, "Fulname and Email is required.");
-    res.render("error", {message: "Fullname and Email is required!"});
+    res.render("error", { message: "Fullname and Email is required!" });
     return;
   }
 
