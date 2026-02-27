@@ -30,3 +30,15 @@ function markAsApplied(button) {
   button.classList.add("btn-secondary");
   button.disabled = true;
 }
+
+
+// Flash Message Auto Hide
+document.addEventListener("DOMContentLoaded", function(){
+    const flash = document.querySelector(".flash-msg");
+    if(flash){
+        setTimeout(()=>{
+            flash.classList.remove("show");
+            flash.classList.add("hide");
+        }, 3000);
+    }
+});

@@ -395,3 +395,38 @@
 .reveal:nth-child(4){ transition-delay: .3s; }
 .reveal:nth-child(5){ transition-delay: .4s; }
 
+
+
+/* For flash */
+.flash-wrapper{
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;   /* PERFECT CENTER */
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.flash-msg{
+    min-width: 320px;
+    max-width: 520px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    pointer-events: auto;
+
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform: translateY(-25px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
