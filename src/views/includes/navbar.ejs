@@ -30,7 +30,7 @@
           <a class="nav-link <%= currentPath === '/skills' ? 'active' : '' %>" href="/skills">Trending Skills</a>
         </li>
         <% if(!currUser) { %>
-           <li class="nav-item"><a class="nav-link <%= currentPath === '/users/register' ? 'active' : '' %>" href="/users/register">Register User</a></li>
+           <li class="nav-item"><a class="nav-link <%= currentPath === '/users/login' ? 'active' : '' %>" href="/users/login">Login</a></li>
         <% } %>
         <% if(currUser) { %>       
            <li class="nav-item dropdown">

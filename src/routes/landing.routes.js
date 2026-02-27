@@ -18,6 +18,6 @@ router.route("/company").get(verifyJWT, companyPages);
 
 router.route("/skills").get(skillsPage);
 
-router.route("/allCompany").get(verifyJWT, allCompanyPage);
+router.route("/allCompany").get(allCompanyPage);
 
 export default router;

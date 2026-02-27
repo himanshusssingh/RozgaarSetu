@@ -132,9 +132,8 @@ const companyPages = asyncHandler(async (req, res) => {
 // For All Company
 const allCompanyPage = asyncHandler(async (req, res) => {
   const eligible = await Company.find();
-  const userId = req.user.id;
   const isAllCompany = true;
-  res.render("companies", { eligible, userId, isAllCompany });
+  res.render("companies", { eligible, isAllCompany });
 });
 
 export { homepage, resumePage, companyPages, skillsPage, allCompanyPage };
