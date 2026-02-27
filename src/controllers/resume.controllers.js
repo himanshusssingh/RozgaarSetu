@@ -12,6 +12,7 @@ import { Resume } from "../models/resume.models.js";
 import jwt from "jsonwebtoken";
 
 import PDFDocument from "pdfkit";
+import axios from "axios";
 
 const resumeForm = (req, res) => {
   res.render("resumeForm");
