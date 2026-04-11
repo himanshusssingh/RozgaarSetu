@@ -8,8 +8,8 @@ const sendEmail = async (options) => {
     theme: "default",
     product: {
       // Appears in header & footer of e-mails
-      name: "Task Manager",
-      link: "https://taskmanagelink.com/",
+      name: "Rozgaar Setu",
+      link: "https://rozgaarsetu.com/",
       // Optional product logo
       // logo: 'https://mailgen.js/img/logo.png'
     },
@@ -23,17 +23,16 @@ const sendEmail = async (options) => {
 
   // Looking to send emails in production? Check out our Email API/SMTP product!
   const transporter = nodemailer.createTransport({
-    host: process.env.MAILTRAP_SMTP_HOST,
-    port: process.env.MAILTRAP_SMTP_PORT,
+    service: "gmail",
     auth: {
-      user: process.env.MAILTRAP_SMTP_USER,
-      pass: process.env.MAILTRAP_SMTP_PASS,
+      user: process.env.EMAIL,
+      pass: process.env.APP_PASSWORD,
     },
   });
 
   try {
     await transporter.sendMail({
-      from: "mail.taskmanager@example.com",
+      from: process.env.EMAIL,
       to: options.email,
       subject: options.subject,
       text: emailTextual, // plain‑text body

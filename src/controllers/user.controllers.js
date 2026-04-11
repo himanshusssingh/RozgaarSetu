@@ -78,7 +78,7 @@ const registerUser = asyncHandler(async (req, res) => {
     subject: "Please verify your email.",
     mailgenContent: emailVerificationMailgenContent(
       user.username,
-      `${req.protocol}://${req.get("host")}/user/verify-email/${unHashedToken}`,
+      `${req.protocol}://${req.get("host")}/users/verifyEmail/${unHashedToken}`,
     ),
   });
 
@@ -326,6 +326,8 @@ const verifyEmail = asyncHandler(async (req, res) => {
     .update(verificationToken)
     .digest("hex");
 
+    console.log("Hashed Token : ", hashedToken);
+
   const user = await User.findOne({
     emailVerificationToken: hashedToken,
     emailVerificationExpiry: { $gt: Date.now() },
@@ -396,4 +398,6 @@ export {
   updateAccountDetails,
   registerForm,
   loginForm,
+  verifyEmail,
+  resendEmailVerification,
 };
