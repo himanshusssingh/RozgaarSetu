@@ -37,7 +37,6 @@ const registerForm = (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { fullname, email, username, password } = req.body;
-  console.log("+++++++++++++++++++++++++++++++++");
 
   if (
     [username, email, fullname, password].some((field) => field?.trim() === "")
@@ -94,7 +93,7 @@ const registerUser = asyncHandler(async (req, res) => {
     return;
   }
 
-  req.flash("success", "User register successfully.");
+  req.flash("success", "User register successfully and verification email sent.");
 
   return (
     res
@@ -318,7 +317,9 @@ const verifyEmail = asyncHandler(async (req, res) => {
   const { verificationToken } = req.params;
 
   if (!verificationToken) {
-    throw new ApiError(400, "Email Verification token is not found!");
+    // throw new ApiError(400, "Email Verification token is not found!");
+    res.render("error", { message: "Email Verification token is not found!" });
+    return;
   }
 
   let hashedToken = crypto
@@ -326,7 +327,7 @@ const verifyEmail = asyncHandler(async (req, res) => {
     .update(verificationToken)
     .digest("hex");
 
-    console.log("Hashed Token : ", hashedToken);
+  console.log("Hashed Token : ", hashedToken);
 
   const user = await User.findOne({
     emailVerificationToken: hashedToken,
@@ -334,7 +335,9 @@ const verifyEmail = asyncHandler(async (req, res) => {
   });
 
   if (!user) {
-    throw new ApiError(400, "Token is invalid or expired.");
+    // throw new ApiError(400, "Token is invalid or expired.");
+    res.render("error", { message: "Token is invalid or expired!" });
+    return;
   }
 
   user.emailVerificationExpiry = undefined;
@@ -344,26 +347,24 @@ const verifyEmail = asyncHandler(async (req, res) => {
 
   await user.save({ validateBeforeSave: false });
 
-  return res.status(200).json(
-    new ApiResponse(
-      200,
-      {
-        isEmailVerified: true,
-      },
-      "Email is verified.",
-    ),
-  );
+  req.flash("success", "Email verified successfully.");
+
+  return res.status(200).redirect("/home");
 });
 
 const resendEmailVerification = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (!user) {
-    throw new ApiError(404, "User not found!");
+    // throw new ApiError(404, "User not found!");
+    res.render("error", { message: "User not found!" });
+    return;
   }
 
   if (!user.isEmailVerified) {
-    throw new ApiError(409, "Email already confirmed");
+    // throw new ApiError(409, "Email already confirmed");
+    res.render("error", { message: "Email already confirmed!" });
+    return;
   }
 
   const { unHashedToken, hashedToken, tokenExpiry } =
@@ -379,13 +380,13 @@ const resendEmailVerification = asyncHandler(async (req, res) => {
     subject: "Please verify your email.",
     mailgenContent: emailVerificationMailgenContent(
       user.username,
-      `${req.protocol}://${req.get("host")}/api/v1/users/verify-email/${unHashedToken}`,
+      `${req.protocol}://${req.get("host")}/users/verifyEmail/${unHashedToken}`,
     ),
   });
 
-  return res
-    .status(200)
-    .json(new ApiResponse(200, {}, "Mail has been sent to your email ID"));
+  req.flash("success", "Verification email resent successfully.");
+
+  return res.status(200).redirect("/home");
 });
 
 export {

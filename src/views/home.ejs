@@ -106,7 +106,16 @@
       
           <!-- User Info -->
           <div class="text-start small">
-            <p class="m-2 fs-5"><strong>Email: </strong> <%= currUser.email %></p>
+            <p class="m-2 fs-5"><strong>Email: </strong> <%= currUser.email %> </p>
+
+            <% if(!currUser.isEmailVerified) { %>
+            <p class="m-1 fs-7">
+              <form action="/users/resendEmailVerification" method="post">
+                <button class="btn btn-sm btn-outline-warning">Verify Email</button>
+              </form>
+            </p>
+            <% }  %>
+
             <p class="m-2 fs-5"><strong>Joined: </strong> <%= new Date(currUser.createdAt).toDateString() %></p>
           </div>
       
