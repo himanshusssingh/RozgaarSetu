@@ -91,4 +91,4 @@ Then open `http://localhost:3000` in your browser.
 This project is released under the ISC License.
 
 ## Author
-[Himanshu Singh](https://github.com/himanshusssingh.io)
+[Himanshu Singh](https://himanshusssingh.github.io/)
