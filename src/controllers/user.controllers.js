@@ -93,7 +93,10 @@ const registerUser = asyncHandler(async (req, res) => {
     return;
   }
 
-  req.flash("success", "User register successfully and verification email sent.");
+  req.flash(
+    "success",
+    "User register successfully and verification email sent.",
+  );
 
   return (
     res
