@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 import registerRoute from "./routes/user.routes.js";
 import resumeRoute from "./routes/resume.routes.js";
 import landingRoute from "./routes/landing.routes.js";
-
+import recruiterRoute from "./routes/recruiter.routes.js";
 import { verifyJWT } from "./middlewares/auth.middlewares.js";
 import setUser from "./middlewares/setUser.middlewares.js";
 import session from "express-session";
@@ -80,6 +80,7 @@ app.get("/", (req, res) => {
 app.use("/", landingRoute);
 app.use("/users", registerRoute);
 app.use("/resume", resumeRoute);
+app.use("/recruiter", recruiterRoute);
 app.use((req, res) => {
   res.status(404).render("error", {message: "Page not found!"});
 })

@@ -1,6 +1,6 @@
-import { ApiError } from "../utils/apiError";
-import { ApiResponse } from "../utils/apiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 import { Company } from "../models/company.models.js";
 import { User } from "../models/user.models.js";
