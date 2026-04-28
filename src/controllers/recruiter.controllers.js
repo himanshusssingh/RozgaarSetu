@@ -60,3 +60,5 @@ const createCompany = asyncHandler(async (req, res) => {
 
   return res.status(201).redirect("/home");
 });
+
+export { companyForm, createCompany };
