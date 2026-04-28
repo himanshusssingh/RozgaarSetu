@@ -36,10 +36,10 @@ const registerForm = (req, res) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { fullname, email, username, password } = req.body;
+  const { role, fullname, email, username, password } = req.body;
 
   if (
-    [username, email, fullname, password].some((field) => field?.trim() === "")
+    [role, username, email, fullname, password].some((field) => field?.trim() === "")
   ) {
     // throw new ApiError(400, "All fields are required.");
     res.render("error", { message: "All fields are required." });
@@ -57,6 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const user = await User.create({
+    role,
     fullname,
     username,
     email,
@@ -95,7 +96,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   req.flash(
     "success",
-    "User register successfully and verification email sent.",
+    "You're register successfully and verification email sent.",
   );
 
   return (
@@ -148,24 +149,14 @@ const loginUser = asyncHandler(async (req, res) => {
     secure: true,
   };
 
-  const resume = await Resume.findOne({ owner: user._id });
 
   req.flash("success", "User login successfully.");
 
-  // if (resume) {
   return res
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .redirect("/home");
-  //  }
-  // else {
-  //   return res
-  //     .status(200)
-  //     .cookie("accessToken", accessToken, options)
-  //     .cookie("refreshToken", refreshToken, options)
-  //     .redirect("/resume/createResume");
-  // }
 });
 
 const logoutUser = asyncHandler(async (req, res) => {

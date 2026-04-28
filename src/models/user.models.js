@@ -44,6 +44,11 @@ const userSchema = new Schema(
     emailVerificationExpiry: {
       type: Date,
     },
+    role: {
+      type: String,
+      enum: ["user", "recruiter"],
+      default: "user",
+    },
   },
   {
     timestamps: true,
