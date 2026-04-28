@@ -56,13 +56,30 @@ const createCompany = asyncHandler(async (req, res) => {
     return;
   }
 
-  res.flash(success, "Company created successfully!");
+  req.flash("success", "Company created successfully!");
 
   return res.status(201).redirect("/home");
 });
 
+const recruiterJobs = asyncHandler(async (req, res) => {
+  const jobs = await Company.find({ owner: req.user._id })
+    .sort({ createdAt: -1 })
+    .lean();
+
+  res.render("jobs", { jobs });
+});
+
 const editCompanyForm = asyncHandler(async (req, res) => {
-  const company = await Company.findOne({ owner: req.user._id });
+  const company = await Company.findOne({
+    _id: req.params.id,
+    owner: req.user._id,
+  }).lean();
+
+  if (!company) {
+    res.render("error", { message: "Company not found!" });
+    return;
+  }
+
   res.render("editCompany", { company });
 });
 
@@ -87,7 +104,10 @@ const editCompany = asyncHandler(async (req, res) => {
     return;
   }
 
-  const company = await Company.findOne({ owner: req.user._id });
+  const company = await Company.findOne({
+    _id: req.params.id,
+    owner: req.user._id,
+  });
 
   if (!company) {
     res.render("error", { message: "Company not found!" });
@@ -110,20 +130,30 @@ const editCompany = asyncHandler(async (req, res) => {
     return;
   }
 
-  res.flash("success", "Company updated successfully!");
-  return res.status(200).redirect("/home");
+  req.flash("success", "Company updated successfully!");
+  return res.status(200).redirect("/recruiter/jobs");
 });
 
 const deleteCompany = asyncHandler(async (req, res) => {
-  const company = await Company.findOneAndDelete({ owner: req.user._id });
+  const company = await Company.findOneAndDelete({
+    _id: req.params.id,
+    owner: req.user._id,
+  });
 
   if (!company) {
     res.render("error", { message: "Company not found!" });
     return;
   }
 
-  res.flash("success", "Company deleted successfully!");
-  return res.status(200).redirect("/home");
+  req.flash("success", "Company deleted successfully!");
+  return res.status(200).redirect("/recruiter/jobs");
 });
 
-export { companyForm, createCompany, editCompanyForm, editCompany, deleteCompany };
+export {
+  companyForm,
+  recruiterJobs,
+  createCompany,
+  editCompanyForm,
+  editCompany,
+  deleteCompany,
+};

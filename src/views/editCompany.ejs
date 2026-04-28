@@ -1,0 +1,106 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<div class="col-8 offset-2">
+  <br />
+  <h2>Edit Job</h2>
+
+  <form
+    action="/recruiter/jobs/<%= company._id %>/edit"
+    method="POST"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label class="form-label">Company Name *</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        value="<%= company.name %>"
+        required
+      />
+      <div class="invalid-feedback">Company name is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description *</label>
+      <textarea name="description" class="form-control" rows="4" required>
+<%= company.description %></textarea
+      >
+      <div class="invalid-feedback">Description is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Job Title *</label>
+      <input
+        type="text"
+        name="jobTitle"
+        class="form-control"
+        value="<%= company.jobTitle %>"
+        required
+      />
+      <div class="invalid-feedback">Job title is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Required Skills *</label>
+      <input
+        type="text"
+        name="requireSkills"
+        class="form-control"
+        value="<%= company.requireSkills %>"
+        required
+      />
+      <div class="invalid-feedback">Required skills are required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Experience *</label>
+      <input
+        type="text"
+        name="experience"
+        class="form-control"
+        value="<%= company.experience %>"
+        required
+      />
+      <div class="invalid-feedback">Experience is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Job Location</label>
+      <input
+        type="text"
+        name="jobLocation"
+        class="form-control"
+        value="<%= company.jobLocation %>"
+      />
+      <div class="invalid-feedback">Please enter a valid job location.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Salary</label>
+      <input
+        type="text"
+        name="salary"
+        class="form-control"
+        value="<%= company.salary %>"
+      />
+      <div class="invalid-feedback">Please enter a valid salary.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Career Link *</label>
+      <input
+        type="url"
+        name="careerLink"
+        class="form-control"
+        value="<%= company.careerLink %>"
+        required
+      />
+      <div class="invalid-feedback">Career link is required.</div>
+    </div>
+
+    <button class="btn btn-primary">Save Job</button>
+    <br /><br />
+  </form>
+</div>
