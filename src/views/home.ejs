@@ -260,7 +260,7 @@
 
     <div class="row g-4 justify-content-center">
 
-      <% if(currUser.role === "recruiter") { %>
+      <% if(currUser && currUser.role === "recruiter") { %>
         <!-- Step 1 -->
         <div class="reveal col-md-4">
           <div class="how-card text-center h-100">
@@ -294,7 +294,7 @@
           </div>
         </div>
       <% } else { %>
-                <!-- Step 1 -->
+        <!-- Step 1 -->
         <div class="reveal col-md-4">
           <div class="how-card text-center h-100">
             <div class="step-circle bg-primary">1</div>
