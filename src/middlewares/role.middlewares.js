@@ -1,6 +1,6 @@
-import { asyncHandler } from "../utils/asyncHandler";
-import { ApiError } from "../utils/apiError";
-import { User } from "../models/user.models";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/apiError.js";
+import { User } from "../models/user.models.js";
 
 const isUser = asyncHandler(async (req, res, next) => {
   const role = req.user.role;
