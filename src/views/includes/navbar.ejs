@@ -20,15 +20,27 @@
         <li class="nav-item">
           <a class="nav-link <%= currentPath === '/home' ? 'active' : '' %>" aria-current="page" href="/home">Home</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link <%= currentPath === '/resume' ? 'active' : '' %>" href="/resume">Resume</a>
+          <% if (currUser.role === 'recruiter') { %>
+            <a class="nav-link <%= currentPath === '/recruiter/createJob' ? 'active' : '' %>" href="/recruiter/createJob">Post a Job</a>
+          <% } else { %>
+            <a class="nav-link <%= currentPath === '/resume' ? 'active' : '' %>" href="/resume">Resume</a>
+          <% } %>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link <%= currentPath === '/allCompany' ? 'active' : '' %>" href="/allCompany">Companies</a>
+          <% if (currUser.role === "recruiter") { %>
+            <a class="nav-link" <%= currentPath === '/recruiter/jobs' ? 'active' : '' %>" href="/recruiter/jobs">View all posted jobs</a>
+          <% } else { %>
+            <a class="nav-link <%= currentPath === '/allCompany' ? 'active' : '' %>" href="/allCompany">Companies</a>
+          <% } %>
         </li>
+
         <li class="nav-item">
           <a class="nav-link <%= currentPath === '/skills' ? 'active' : '' %>" href="/skills">Trending Skills</a>
         </li>
+
         <% if(!currUser) { %>
            <li class="nav-item"><a class="nav-link <%= currentPath === '/users/login' ? 'active' : '' %>" href="/users/login"><i class="fa-solid fa-circle-user"></i>  Login</a></li>
         <% } %>
@@ -55,6 +67,7 @@
                        Edit Profile
                      </button>
                   </li>
+                  
                   <li>
                     <button
                       class="dropdown-item"

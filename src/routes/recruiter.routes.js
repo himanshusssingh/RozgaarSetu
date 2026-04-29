@@ -22,7 +22,7 @@ router
 router.post("/jobs/:id/delete", verifyJWT, deleteCompany);
 
 router
-  .route("/createJOb")
+  .route("/createJob")
   .get(verifyJWT, companyForm)
   .post(verifyJWT, createCompany);
 
