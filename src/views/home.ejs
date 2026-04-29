@@ -83,8 +83,13 @@
         </p>
 
         <div class="hero-cta">
-          <a href="/company" class="btn btn-warning">Find Matching Jobs</a>
-          <a href="/resume" class="btn btn-outline-light ms-3">My Resume</a>
+          <% if(currUser.role === "recruiter") { %>
+            <a href="/recruiter/jobs" class="btn btn-warning">View all posted Jobs</a>
+            <a href="/recruiter/createJob" class="btn btn-outline-light ms-3">Post a Job  </a>
+          <% } else { %>
+            <a href="/company" class="btn btn-warning">Find Matching Jobs</a>
+            <a href="/resume" class="btn btn-outline-light ms-3">My Resume</a>
+          <% } %>
         </div>
 
       </div>
@@ -141,98 +146,101 @@
   </div>
 </section>
 
+<% if(currUser.role === "user") { %>
 
-<div class="container my-5">
-
-  <!-- DASHBOARD CARDS -->
-  <div class="row g-4">
-
-    <!-- Explore Careers -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-primary">
-            🎯
+  <div class="container my-5">
+  
+    <!-- DASHBOARD CARDS -->
+    <div class="row g-4">
+  
+      <!-- Explore Careers -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-primary">
+              🎯
+            </div>
+            <h5 class="mt-3">Explore Careers</h5>
+            <p class="text-muted">Discover various career options.</p>
+            <a href="/skills" class="btn btn-primary btn-sm">Explore</a>
           </div>
-          <h5 class="mt-3">Explore Careers</h5>
-          <p class="text-muted">Discover various career options.</p>
-          <a href="/skills" class="btn btn-primary btn-sm">Explore</a>
         </div>
       </div>
-    </div>
-
-    <!-- Build Resume -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-success">
-            📄
+  
+      <!-- Build Resume -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-success">
+              📄
+            </div>
+            <h5 class="mt-3">Build Your Resume</h5>
+            <p class="text-muted">Create a professional resume.</p>
+            <a href="/resume/editResume" class="btn btn-success btn-sm">Get Started</a>
           </div>
-          <h5 class="mt-3">Build Your Resume</h5>
-          <p class="text-muted">Create a professional resume.</p>
-          <a href="/resume/editResume" class="btn btn-success btn-sm">Get Started</a>
         </div>
       </div>
-    </div>
-
-    <!-- Applied Applications -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-warning">
-            ⭐
+  
+      <!-- Applied Applications -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-warning">
+              ⭐
+            </div>
+            <h5 class="mt-3">Applied Applications</h5>
+            <p class="text-muted">Track your applied jobs.</p>
+            <a href="/applications" class="btn btn-warning btn-sm">View</a>
           </div>
-          <h5 class="mt-3">Applied Applications</h5>
-          <p class="text-muted">Track your applied jobs.</p>
-          <a href="/applications" class="btn btn-warning btn-sm">View</a>
         </div>
       </div>
-    </div>
-
-    <!-- Preview Resume -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-info">
-            👁️
+  
+      <!-- Preview Resume -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-info">
+              👁️
+            </div>
+            <h5 class="mt-3">Preview Resume</h5>
+            <p class="text-muted">View or download your resume.</p>
+            <a href="/resume" class="btn btn-info btn-sm">Preview</a>
           </div>
-          <h5 class="mt-3">Preview Resume</h5>
-          <p class="text-muted">View or download your resume.</p>
-          <a href="/resume" class="btn btn-info btn-sm">Preview</a>
         </div>
       </div>
-    </div>
-
-    <!-- Skills Tracker -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-secondary">
-            🧠
+  
+      <!-- Skills Tracker -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-secondary">
+              🧠
+            </div>
+            <h5 class="mt-3">Skills Tracker</h5>
+            <p class="text-muted">Monitor your skill growth.</p>
+            <a href="/skills" class="btn btn-secondary btn-sm">Track</a>
           </div>
-          <h5 class="mt-3">Skills Tracker</h5>
-          <p class="text-muted">Monitor your skill growth.</p>
-          <a href="/skills" class="btn btn-secondary btn-sm">Track</a>
         </div>
       </div>
-    </div>
-
-    <!-- Career Goals -->
-    <div class="reveal col-md-6 col-lg-4">
-      <div class="card dashboard-card h-100">
-        <div class="card-body">
-          <div class="icon-circle bg-dark">
-            🚀
+  
+      <!-- Career Goals -->
+      <div class="reveal col-md-6 col-lg-4">
+        <div class="card dashboard-card h-100">
+          <div class="card-body">
+            <div class="icon-circle bg-dark">
+              🚀
+            </div>
+            <h5 class="mt-3">Career Goals</h5>
+            <p class="text-muted">Set and achieve goals.</p>
+            <a href="/goals" class="btn btn-dark btn-sm">Set Goals</a>
           </div>
-          <h5 class="mt-3">Career Goals</h5>
-          <p class="text-muted">Set and achieve goals.</p>
-          <a href="/goals" class="btn btn-dark btn-sm">Set Goals</a>
         </div>
       </div>
+  
     </div>
-
   </div>
-</div>
+
+<% } %>
 
 <% } %>
 
@@ -252,41 +260,76 @@
 
     <div class="row g-4 justify-content-center">
 
-      <!-- Step 1 -->
-      <div class="reveal col-md-4">
-        <div class="how-card text-center h-100">
-          <div class="step-circle bg-primary">1</div>
-          <h5 class="fw-bold mt-3">Create Your Profile</h5>
-          <p class="text-muted">
-            Sign up and build a skill-based profile with projects,
-            experience, and verified abilities.
-          </p>
+      <% if(currUser.role === "recruiter") { %>
+        <!-- Step 1 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-primary">1</div>
+            <h5 class="fw-bold mt-3">Create Your Profile</h5>
+            <p class="text-muted">
+              Sign up and build a profile with your company’s culture, job openings, and hiring needs. Showcase your vision to attract the right talent.
+            </p>
+          </div>
         </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="reveal col-md-4">
-        <div class="how-card text-center h-100">
-          <div class="step-circle bg-success">2</div>
-          <h5 class="fw-bold mt-3">Get Matched</h5>
-          <p class="text-muted">
-            Our intelligent system matches your skills with
-            relevant jobs and recruiters.
-          </p>
+  
+        <!-- Step 2 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-success">2</div>
+            <h5 class="fw-bold mt-3">Post Jobs</h5>
+            <p class="text-muted">
+              Our intelligent system matches your job postings with relevant candidates based on their skills and experience.
+            </p>
+          </div>
         </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="reveal col-md-4">
-        <div class="how-card text-center h-100">
-          <div class="step-circle bg-warning">3</div>
-          <h5 class="fw-bold mt-3">Apply & Get Hired</h5>
-          <p class="text-muted">
-            Apply with confidence, attend interviews,
-            and land opportunities faster.
-          </p>
+  
+        <!-- Step 3 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-warning">3</div>
+            <h5 class="fw-bold mt-3">Hire Top Talent</h5>
+            <p class="text-muted">
+              Review matched candidates, conduct interviews, and hire the best fit for your company’s success.
+            </p>
+          </div>
         </div>
-      </div>
+      <% } else { %>
+                <!-- Step 1 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-primary">1</div>
+            <h5 class="fw-bold mt-3">Create Your Profile</h5>
+            <p class="text-muted">
+              Sign up and build a skill-based profile with projects,
+              experience, and verified abilities.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Step 2 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-success">2</div>
+            <h5 class="fw-bold mt-3">Get Matched</h5>
+            <p class="text-muted">
+              Our intelligent system matches your skills with
+              relevant jobs and recruiters.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Step 3 -->
+        <div class="reveal col-md-4">
+          <div class="how-card text-center h-100">
+            <div class="step-circle bg-warning">3</div>
+            <h5 class="fw-bold mt-3">Apply & Get Hired</h5>
+            <p class="text-muted">
+              Apply with confidence, attend interviews,
+              and land opportunities faster.
+            </p>
+          </div>
+        </div>
+      <% } %>
 
     </div>
   </div>
