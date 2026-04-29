@@ -29,7 +29,7 @@ const setUser = async (req, res, next) => {
 
     if (!resume) {
       res.locals.currProfile =
-        "https://res-console.cloudinary.com/dpercqknb/thumbnails/v1/image/upload/v1771603352/VXNlcl9menBkaHg=/drilldown";
+        "https://res.cloudinary.com/dpercqknb/image/upload/v1771603352/User_fzpdhx.jpg";
       next();
     } else {
       res.locals.currProfile = resume.profile;
