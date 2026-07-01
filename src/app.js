@@ -13,10 +13,13 @@ import recruiterRoute from "./routes/recruiter.routes.js";
 import { verifyJWT } from "./middlewares/auth.middlewares.js";
 import setUser from "./middlewares/setUser.middlewares.js";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import flash from "connect-flash";
 import passport from "passport";
 
 const app = express();
+
+const dburl = process.env.MONGODB_URI;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,13 +32,28 @@ app.use(
   }),
 );
 
+const store = MongoStore.create({
+  mongoUrl: dburl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("Error in Mongo Session Store", err);
+});
+
 app.use(
   session({
-    secret: "keyboard cat", // any random string
+    store,
+    secret: process.env.SECRET, // any random string
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60, // 1 hour
+      expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
     },
   }),
 );
@@ -75,14 +93,14 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   res.redirect("/home");
-});  
+});
 
 app.use("/", landingRoute);
 app.use("/users", registerRoute);
 app.use("/resume", resumeRoute);
 app.use("/recruiter", recruiterRoute);
 app.use((req, res) => {
-  res.status(404).render("error", {message: "Page not found!"});
-})
+  res.status(404).render("error", { message: "Page not found!" });
+});
 
 export default app;
