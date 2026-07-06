@@ -46,6 +46,7 @@ body {
   opacity: 0;
   transform: translateY(40px);
   animation: textReveal 0.9s ease forwards;
+  margin-top: 20px;
 }
 
 .hero-heading span {

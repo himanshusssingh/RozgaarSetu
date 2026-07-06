@@ -6,6 +6,10 @@
   font-weight: 500;
 }
 
+.navbar>.container-fluid {
+  background-color: #a5b4fc
+}
+
 /* ===== BACKGROUND ===== */
 .auth-page {
   min-height: 100vh;
