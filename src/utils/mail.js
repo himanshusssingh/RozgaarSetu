@@ -22,6 +22,9 @@ const sendEmail = async (options) => {
   const emailHtml = mailGenerator.generate(options.mailgenContent);
 
   // Looking to send emails in production? Check out our Email API/SMTP product!
+  console.log(process.env.EMAIL);
+  console.log(process.env.APP_PASSWORD);
+  console.log("Recipient:", options.email);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

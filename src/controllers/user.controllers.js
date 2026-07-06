@@ -355,7 +355,7 @@ const resendEmailVerification = asyncHandler(async (req, res) => {
     return;
   }
 
-  if (!user.isEmailVerified) {
+  if (user.isEmailVerified) {
     // throw new ApiError(409, "Email already confirmed");
     res.render("error", { message: "Email already confirmed!" });
     return;
@@ -370,7 +370,7 @@ const resendEmailVerification = asyncHandler(async (req, res) => {
   await user.save({ validateBeforeSave: false });
 
   await sendEmail({
-    emai: user?.email,
+    email: user?.email,
     subject: "Please verify your email.",
     mailgenContent: emailVerificationMailgenContent(
       user.username,
